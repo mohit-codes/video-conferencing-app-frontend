@@ -7,6 +7,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 **Commits could fail due to `husky`. try resolving all eslint errors before commiting**
+
 **stylelint is not included in husky due to breaking changes. ensure linting css styles before commiting**
 
 - use nvm to switch to node version mentioned above
