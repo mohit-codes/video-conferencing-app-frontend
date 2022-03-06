@@ -11,7 +11,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - use nvm to switch to node version mentioned above
 - run `npm i` to install all dependencies
+- run `npm run prepare` to setup husky
 - run `npm start` to start the project
+
+## Suggested VsCode extensions -
+
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) (latest)
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) - (v8.2.0)
+- [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint) (latest)
 
 ## Available Scripts
 
@@ -20,6 +27,10 @@ In the project directory, you can run:
 ### `npm run`
 
 A utility provided by npm to list all available scripts
+
+### `npm run prepare`
+
+installs husky - Git hooks
 
 ### `npm run eslint`
 
