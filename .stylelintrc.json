@@ -1,0 +1,26 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-scss", "stylelint-config-prettier"],
+  "customSyntax": "@stylelint/postcss-css-in-js",
+  "rules": {
+    "color-named": "always-where-possible",
+    "declaration-block-trailing-semicolon": null,
+    "declaration-colon-space-after": null,
+    "indentation": 2,
+    "max-nesting-depth": 5,
+    "media-feature-name-case": null,
+    "media-feature-name-no-unknown": [
+      true,
+      {
+        "ignoreMediaFeatureNames": ["max-width"]
+      }
+    ],
+    "no-descending-specificity": null,
+    "selector-list-comma-newline-after": null,
+    "selector-max-id": 1,
+    "selector-type-case": null,
+    "selector-type-no-unknown": null,
+    "string-quotes": "double",
+    "value-keyword-case": null,
+    "at-rule-no-unknown": null
+  }
+}

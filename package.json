@@ -1,7 +1,16 @@
 {
-  "name": "video-conferencing-app-frontend",
-  "version": "0.1.0",
-  "private": true,
+  "browserslist": {
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ]
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
@@ -15,51 +24,11 @@
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "sass": "^1.49.9",
-    "stylelint": "^14.5.3",
-    "stylelint-config-standard": "^25.0.0",
-    "stylelint-scss": "^4.1.0",
     "validator": "^13.7.0",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "eslint": "eslint --ext .js,.jsx src/",
-    "eslint-fix": "eslint --ext .js,.jsx --fix src/",
-    "prettier": "prettier --write .",
-    "stylelint": "stylelint \"**/*.{css,scss,sass,js,jsx}\"",
-    "prepare": "husky install",
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint --fix"
-    ],
-    "*.{css,scss,js,jsx}": [
-      "prettier --write"
-    ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
+    "@stylelint/postcss-css-in-js": "^0.37.2",
     "eslint": "^8.10.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
@@ -72,6 +41,39 @@
     "eslint-plugin-sort-keys-fix": "^1.1.2",
     "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^7.0.0",
-    "prettier": "^2.5.1"
-  }
+    "prettier": "^2.5.1",
+    "stylelint": "^14.5.3",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-standard": "^25.0.0",
+    "stylelint-scss": "^4.1.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "lint-staged": {
+    "*.{css,scss,js,jsx}": [
+      "prettier --write"
+    ],
+    "*.{js,jsx}": [
+      "eslint --fix"
+    ]
+  },
+  "name": "video-conferencing-app-frontend",
+  "private": true,
+  "scripts": {
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "eslint": "eslint --ext .js,.jsx src/",
+    "eslint-fix": "eslint --ext .js,.jsx --fix src/",
+    "pre-commit": "lint-staged",
+    "prepare": "husky install",
+    "prettier": "prettier --write .",
+    "start": "react-scripts start",
+    "stylelint": "stylelint \"**/*.{css,scss,sass,js,jsx}\" ",
+    "test": "react-scripts test"
+  },
+  "version": "0.1.0"
 }

@@ -1,0 +1,243 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest/globals": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb",
+    "eslint:all",
+    "plugin:import/recommended",
+    "plugin:jest/all",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:react/all",
+    "react-app",
+    "react-app/jest"
+  ],
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {
+        "sort-keys-fix/sort-keys-fix": ["warn", "asc", { "natural": true }]
+      }
+    }
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "arrowFunctions": true,
+      "binaryLiterals": true,
+      "blockBindings": true,
+      "classes": true,
+      "defaultParams": true,
+      "destructuring": true,
+      "forOf": true,
+      "generators": true,
+      "globalReturn": true,
+      "impliedStrict": true,
+      "jsx": true,
+      "modules": true,
+      "objectLiteralComputedProperties": true,
+      "objectLiteralDuplicateProperties": true,
+      "objectLiteralShorthandMethods": true,
+      "objectLiteralShorthandProperties": true,
+      "octalLiterals": true,
+      "regexUFlag": true,
+      "regexYFlag": true,
+      "restParams": true,
+      "spread": true,
+      "superInFunctions": true,
+      "templateStrings": true,
+      "unicodeCodePointEscapes": true
+    },
+    "ecmaVersion": 2022,
+    "project": "./tsconfig.json",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "unused-imports",
+    "sort-keys-fix",
+    "prettier",
+    "jsx-a11y",
+    "jest"
+  ],
+  "rules": {
+    "array-bracket-newline": "off",
+    "array-element-newline": "off",
+    "arrow-body-style": ["warn", "as-needed"],
+    "arrow-parens": ["warn", "always"],
+    "comma-dangle": [
+      "warn",
+      {
+        "arrays": "only-multiline",
+        "exports": "only-multiline",
+        "functions": "only-multiline",
+        "imports": "only-multiline",
+        "objects": "only-multiline"
+      }
+    ],
+    "comment-empty-line-before": "off",
+    "complexity": [
+      "warn",
+      {
+        "max": 18
+      }
+    ],
+    "default-param-last": "off",
+    "dot-notation": [
+      "warn",
+      {
+        "allowPattern": "^[a-z]+(-[a-z]+)+$"
+      }
+    ],
+    "eqeqeq": ["warn", "smart"],
+    "func-style": "off",
+    "guard-for-in": "warn",
+    "id-length": "off",
+    "implicit-arrow-linebreak": "off",
+    "import/export": "off",
+    "import/extensions": "off",
+    "import/newline-after-import": "warn",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-anonymous-default-export": "off",
+    "import/no-unresolved": "off",
+    "import/order": "warn",
+    "import/prefer-default-export": "off",
+    "indent": "off",
+    "init-declarations": "warn",
+    "jest/require-hook": "off",
+    "jest/no-hooks": "off",
+    "jest/prefer-expect-assertions": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/interactive-supports-focus": "off",
+    "jsx-a11y/no-static-element-interactions": "warn",
+    "jsx-quotes": "off",
+    "linebreak-style": ["warn", "unix"],
+    "max-classes-per-file": ["warn", 5],
+    "max-len": [
+      "warn",
+      {
+        "code": 200
+      }
+    ],
+    "max-lines": "off",
+    "max-lines-per-function": "off",
+    "max-params": "off",
+    "max-statements": "off",
+    "multiline-comment-style": "off",
+    "multiline-ternary": "off",
+    "no-console": "warn",
+    "no-duplicate-imports": "off",
+    "no-debugger": "warn",
+    "no-else-return": "off",
+    "no-extra-parens": "off",
+    "no-extra-semi": "warn",
+    "no-implicit-globals": "off",
+    "no-magic-numbers": "off",
+    "no-mixed-operators": "off",
+    "no-mixed-spaces-and-tabs": "off",
+    "no-negated-condition": "off",
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
+    "no-redeclare": "off",
+    "no-restricted-syntax": "off",
+    "no-shadow": [
+      "off",
+      {
+        "hoist": "all"
+      }
+    ],
+    "no-tabs": "off",
+    "no-ternary": "off",
+    "no-trailing-spaces": "warn",
+    "no-undef": "off",
+    "no-undefined": "off",
+    "no-underscore-dangle": "off",
+    "no-unused-expressions": "off",
+    "no-unused-vars": "off",
+    "no-use-before-define": "off",
+    "no-void": "off",
+    "object-curly-newline": "off",
+    "object-curly-spacing": "warn",
+    "object-property-newline": "warn",
+    "one-var": ["warn", "never"],
+    "prefer-destructuring": "off",
+    "prefer-named-capture-group": "off",
+    "prettier/prettier": "off",
+    "quotes": "off",
+    "quote-props": ["warn", "as-needed", { "unnecessary": true }],
+    "react-hooks/exhaustive-deps": "off",
+    "react/button-has-type": "off",
+    "react/display-name": "off",
+    "react/default-props-match-prop-types": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function"
+      }
+    ],
+    "react/jsx-closing-bracket-location": "off",
+    "react/jsx-curly-newline": "off",
+    "react/jsx-filename-extension": [
+      2,
+      {
+        "extensions": [".jsx", ".tsx"]
+      }
+    ],
+    "react/jsx-first-prop-new-line": "off",
+    "react/jsx-indent": ["warn", 2],
+    "react/jsx-indent-props": ["warn", 2],
+    "react/jsx-max-depth": "off",
+    "react/jsx-newline": "off",
+    "react/jsx-no-literals": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-sort-props": "off",
+    "react/jsx-wrap-multilines": "off",
+    "react/no-multi-comp": "off",
+    "react/no-unstable-nested-components": "off",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "require-await": "off",
+    "require-unicode-regexp": "warn",
+    "semi": "off",
+    "sort-imports": [
+      "warn",
+      {
+        "ignoreCase": false,
+        "ignoreDeclarationSort": true,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": ["none", "all", "single", "multiple"]
+      }
+    ],
+    "sort-keys": [
+      "off",
+      "asc",
+      {
+        "caseSensitive": false,
+        "minKeys": 2,
+        "natural": true
+      }
+    ],
+    "sort-keys-fix/sort-keys-fix": "off",
+    "sort-vars": "warn",
+    "unused-imports/no-unused-imports-ts": "off",
+    "unused-imports/no-unused-vars-ts": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".jsx", ".js"],
+        "paths": ["./src"]
+      }
+    }
+  }
+}

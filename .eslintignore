@@ -1,0 +1,8 @@
+build/**
+coverage/**
+public/**
+src/assets/**
+node_modules/**
+jest.config.js
+.jest/**
+src/index.js

@@ -1,6 +1,17 @@
+# node Version : v16.13.0
+
+# npm version : v8.5.3
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+**Commits could fail due to `husky`. try resolving all eslint errors before commiting**
+**stylelint is not included in husky due to breaking changes. ensure linting css styles before commiting**
+
+- use nvm to switch to node version mentioned above
+- run `npm i` to install all dependencies
+- run `npm start` to start the project
 
 ## Available Scripts
 

@@ -1,5 +1,10 @@
-import { createUseStyles } from "react-jss";
+import { createUseStyles } from 'react-jss';
+import { globalTheme } from '../../theme';
 
 export const useButtonStyles = createUseStyles((theme) => ({
-  button: { background: "red", color: "white", borderRadius: "30px" },
+  button: {
+    background: theme.btnBGColor,
+    borderRadius: '30px',
+    fontFamily: globalTheme.fontFamily
+  }
 }));
