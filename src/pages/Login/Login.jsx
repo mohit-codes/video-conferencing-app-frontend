@@ -31,18 +31,18 @@ export const Login = () => {
           {error && <p>{error}</p>}
           <form onSubmit={submitHandler}>
             <InputField
-              callback={onChangeCallback}
+              changeCallback={onChangeCallback}
               value={credentials.email}
-              name='email'
+              id='email'
               placeholder='Enter your email'
               type='email'
               width='19rem'
               hasLabel
             />
             <PasswordInputField
-              callback={onChangeCallback}
+              changeCallback={onChangeCallback}
               value={credentials.password}
-              name='password'
+              id='password'
               placeholder='Enter your password'
               width='19rem'
             />
