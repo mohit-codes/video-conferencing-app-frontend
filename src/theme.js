@@ -1,6 +1,6 @@
 // dynamic theme object
 export const themes = {
-  light: { btnBGColor: 'red' }
+  light: { btnDisabledColor: '#a6a6a6', btnPrimaryColor: '#076EE8' }
 };
 
 // global theme object

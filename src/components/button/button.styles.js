@@ -3,22 +3,23 @@ import { globalTheme } from '../../theme';
 
 export const useButtonStyles = createUseStyles((theme) => ({
   button: {
+    '&:disabled': {
+      background: theme.btnDisabledColor,
+      cursor: 'not-allowed'
+    },
     '&:hover': {
-      border: '2px solid black',
+      boxShadow: '0px 4px 12px 2px rgba(0, 0, 0, 0.25)',
       cursor: 'pointer'
     },
-    // using dynamic theme
-    background: theme.btnBGColor,
-    border: 'none',
-    borderRadius: '30px',
-    color: 'white',
-    // using global theme
+    background: (props) => (props?.bgColor ? props.bgColor : theme.btnPrimaryColor),
+    border: (props) => (props?.border ? props.border : 'none'),
+    borderRadius: '0.3rem',
+    color: (props) => (props?.textColor ? props.textColor : 'white'),
     fontFamily: globalTheme.fontFamily,
-    fontWeight: 'bolder',
-    height: '50px',
-    marginBlock: '300px',
-    marginInline: '45%',
-    textAlign: 'center',
-    width: '200px'
+    fontSize: '1rem',
+    fontWeight: 'bold',
+    margin: (props) => (props?.margin ? props.margin : '0'),
+    padding: '0.7rem 0rem',
+    width: (props) => (props?.width ? props.width : '100%')
   }
 }));

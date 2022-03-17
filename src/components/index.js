@@ -1,3 +1,2 @@
-import { Button } from './button';
-
-export { Button };
+export { Button } from './Button';
+export { InputField, PasswordInputField } from './FormComponents';
