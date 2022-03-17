@@ -2,23 +2,24 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { useFormStyles } from './FormComponents.styles';
+import { toSentenceCase } from '../../utils/utility';
 
-export const PasswordInputField = ({ value, callback, name, placeholder, width }) => {
+export const PasswordInputField = ({ changeCallback, blurCallback, id, width, ...rest }) => {
   const classes = useFormStyles({ width });
   const [showPassword, setShowPassword] = useState(false);
   return (
     <>
-      <label htmlFor={name} className={classes.labelStyle}>
-        {name[0].toUpperCase() + name.slice(1)}
+      <label htmlFor={id} className={classes.labelStyle}>
+        {toSentenceCase(id)}
       </label>
       <div className={classes.passwordInputStyle}>
         <input
           type={showPassword ? 'text' : 'password'}
-          id={name}
-          value={value}
-          onChange={callback}
-          placeholder={placeholder}
+          id={id}
+          onChange={changeCallback}
+          onBlur={blurCallback}
           className={classes.passwordInnerField}
+          {...rest}
         />
         <i
           onClick={() => setShowPassword(!showPassword)}
@@ -34,10 +35,8 @@ export const PasswordInputField = ({ value, callback, name, placeholder, width }
 };
 
 PasswordInputField.propTypes = {
-  callback: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired
+  changeCallback: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired
 };
 
 export default PasswordInputField;

@@ -1,6 +1,15 @@
 import { useButtonStyles } from './Button.styles';
 
-export const Button = ({ children, callback, type, disabled = false, ...props }) => {
+export const Button = ({
+  children,
+  clickCallback,
+  bgColor,
+  border,
+  textColor,
+  margin,
+  width,
+  ...rest
+}) => {
   /*
   Button Component stye props
 
@@ -11,9 +20,9 @@ export const Button = ({ children, callback, type, disabled = false, ...props })
   margin - default value 0
   */
 
-  const classes = useButtonStyles(props);
+  const classes = useButtonStyles({ bgColor, border, margin, textColor, width });
   return (
-    <button className={classes.button} type={type} onClick={callback} disabled={disabled}>
+    <button className={classes.button} onClick={clickCallback} {...rest}>
       {children}
     </button>
   );
