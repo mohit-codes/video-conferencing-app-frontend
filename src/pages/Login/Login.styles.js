@@ -9,7 +9,7 @@ export const useLoginStyles = createUseStyles(() => ({
     justifyContent: 'center',
     width: '100%'
   },
-  heading: { backgroundColor: 'white', fontSize: '2.5rem', textAlign: 'center' },
+  heading: { fontSize: '2.5rem', textAlign: 'center' },
   line: {
     background: 'rgba(0, 0, 0, 0.25)',
     height: '0.1rem',

@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { useFormStyles } from './FormComponents.styles';
 import { toSentenceCase } from '../../utils/utility';
-import { useFormStyles } from './formComponents.styles';
 
 export const PasswordInputField = ({ changeCallback, blurCallback, id, width, ...rest }) => {
   const classes = useFormStyles({ width });

@@ -64,6 +64,7 @@
   },
   "plugins": [
     "react",
+    "@typescript-eslint",
     "unused-imports",
     "sort-keys-fix",
     "prettier",
