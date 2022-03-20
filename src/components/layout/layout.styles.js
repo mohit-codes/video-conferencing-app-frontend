@@ -60,24 +60,31 @@ export const useLayoutStyles = createUseStyles((props) => ({
   colXL: {},
   colXS: {},
   colXXL: {},
+
   container: {
     extend: [baseContainer, minWidth576, minWidth768, minWidth992, minWidth1200]
   },
+
   containerFluid: {
     extend: [baseContainer]
   },
+
   containerLG: {
     extend: [baseContainer, minWidth992, minWidth1200]
   },
+
   containerMD: {
     extend: [baseContainer, minWidth768, minWidth992, minWidth1200]
   },
+
   containerSM: {
     extend: [baseContainer, minWidth576, minWidth768, minWidth992, minWidth1200]
   },
+
   containerXL: {
     extend: [baseContainer, minWidth1200]
   },
+
   row: {
     '& > *': {
       flexShrink: 0,
@@ -87,6 +94,7 @@ export const useLayoutStyles = createUseStyles((props) => ({
       paddingRight: '0.5rem',
       width: '100%'
     },
+
     display: 'flex',
     flexWrap: 'wrap',
     marginLeft: '-0.5rem',
