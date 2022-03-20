@@ -1,4 +1,4 @@
-import { useButtonStyles } from './Button.styles';
+import { useButtonStyles } from './button.styles';
 
 export const Button = ({
   children,

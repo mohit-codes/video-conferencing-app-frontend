@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useLoginStyles } from './Login.styles';
 import { Button, InputField, PasswordInputField } from '../../components';
 import { useAuth } from '../../hooks';
+import { literals } from '../../utils/constants';
+import { useLoginStyles } from './Login.styles';
 
 export const Login = () => {
   const classes = useLoginStyles();
@@ -25,9 +26,9 @@ export const Login = () => {
   return (
     <div className={classes.background}>
       <div>
-        <h1 className={classes.heading}>NAME</h1>
+        <h1 className={classes.heading}>{literals.NAME}</h1>
         <div className={classes.loginBox}>
-          <p className={classes.subHeading}>Log In to Name</p>
+          <p className={classes.subHeading}>Log In to {literals.NAME}</p>
           {error && <p>{error}</p>}
           <form onSubmit={submitHandler}>
             <InputField
