@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { useLayoutStyles } from './layout.styles';
 
-function useCol({ className, ...props }) {
+const useCol = ({ className, ...props }) => {
   const breakpoints = ['xxl', 'xl', 'lg', 'md', 'sm', 'xs'];
   const classes = useLayoutStyles({ theme: { ...props } });
   const spans = [];
@@ -28,7 +28,7 @@ function useCol({ className, ...props }) {
   }
   const cols = spans.length ? clsx(spans) : classes.col;
   return [{ ...filterProps, className: clsx(cols, className) }, { spans }];
-}
+};
 
 export const Col = (props) => {
   const [{ ...colProps }, { spans }] = useCol(props);
