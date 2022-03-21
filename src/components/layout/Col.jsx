@@ -35,18 +35,11 @@ export const Col = (props) => {
   return <div {...colProps} />;
 };
 
-const colSize = PropTypes.oneOfType([
+const column = PropTypes.oneOfType([
   PropTypes.bool,
   PropTypes.number,
   PropTypes.string,
   PropTypes.oneOf(['auto'])
-]);
-
-const column = PropTypes.oneOfType([
-  colSize,
-  PropTypes.shape({
-    size: colSize
-  })
 ]);
 
 Col.displayName = 'Col';
@@ -62,42 +55,42 @@ Col.propTypes = {
   /**
    * The number of columns to span on large devices (≥992px)
    *
-   * @type {(boolean|"auto"|number|{ span: boolean|"auto"|number, offset: number, order: "first"|"last"|number })}
+   * @type {(boolean|"auto"|number)}
    */
   lg: column,
 
   /**
    * The number of columns to span on medium devices (≥768px)
    *
-   * @type {(boolean|"auto"|number|{ span: boolean|"auto"|number, offset: number, order: "first"|"last"|number })}
+   * @type {(boolean|"auto"|number)}
    */
   md: column,
 
   /**
    * The number of columns to span on small devices (≥576px)
    *
-   * @type {(boolean|"auto"|number|{ span: boolean|"auto"|number, offset: number, order: "first"|"last"|number })}
+   * @type {(boolean|"auto"|number)}
    */
   sm: column,
 
   /**
    * The number of columns to span on extra large devices (≥1200px)
    *
-   * @type {(boolean|"auto"|number|{ span: boolean|"auto"|number, offset: number, order: "first"|"last"|number })}
+   * @type {(boolean|"auto"|number)}
    */
   xl: column,
 
   /**
    * The number of columns to span on extra small devices (<576px)
    *
-   * @type {(boolean|"auto"|number|{ span: boolean|"auto"|number, offset: number, order: "first"|"last"|number })}
+   * @type {(boolean|"auto"|number)}
    */
   xs: column,
 
   /**
    * The number of columns to span on extra extra large devices (≥1400px)
    *
-   * @type {(boolean|"auto"|number|{ span: boolean|"auto"|number, offset: number, order: "first"|"last"|number })}
+   * @type {(boolean|"auto"|number)}
    */
   xxl: column
 };
