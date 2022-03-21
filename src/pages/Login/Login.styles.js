@@ -9,18 +9,25 @@ export const useLoginStyles = createUseStyles(() => ({
     justifyContent: 'center',
     width: '100%'
   },
-  heading: { fontSize: '2.5rem', textAlign: 'center' },
+
+  heading: {
+    backgroundColor: 'white',
+    fontSize: '2.5rem',
+    textAlign: 'center'
+  },
+
   line: {
-    background: 'rgba(0, 0, 0, 0.25)',
+    background: 'rgb(0 0 0 / 25%)',
     height: '0.1rem',
-    margin: '1.5rem 0 1rem 0',
+    margin: '1.5rem 0 1rem',
     width: '20rem'
   },
+
   loginBox: {
     alignItems: 'center',
     backgroundColor: 'white',
     borderRadius: '0.7rem',
-    boxShadow: '0px 4px 15px 3px rgba(0, 0, 0, 0.25)',
+    boxShadow: '0 4px 15px 3px rgb(0 0 0 / 25%)',
     display: 'flex',
     flexDirection: 'column',
     height: '25rem',
@@ -28,8 +35,15 @@ export const useLoginStyles = createUseStyles(() => ({
     textAlign: 'left',
     width: '24rem'
   },
+
   orSeparator: {
-    margin: '0.5rem 0rem'
+    margin: '0.5rem 0'
   },
-  subHeading: { fontSize: '1rem', fontWeight: 'bold', marginTop: '1rem', textAlign: 'center' }
+
+  subHeading: {
+    fontSize: '1rem',
+    fontWeight: 'bold',
+    marginTop: '1rem',
+    textAlign: 'center'
+  }
 }));

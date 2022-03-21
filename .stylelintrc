@@ -1,10 +1,16 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-scss", "stylelint-config-prettier"],
   "customSyntax": "@stylelint/postcss-css-in-js",
+  "extends": ["stylelint-config-standard", "stylelint-scss", "stylelint-config-prettier"],
   "rules": {
+    "at-rule-no-unknown": null,
+    "block-no-empty": null,
     "color-named": "always-where-possible",
     "declaration-block-trailing-semicolon": null,
     "declaration-colon-space-after": null,
+    "font-family-no-missing-generic-family-keyword": null,
+    "font-family-name-quotes": null,
+    "function-name-case": null,
+    "function-no-unknown": null,
     "indentation": 2,
     "max-nesting-depth": 5,
     "media-feature-name-case": null,
@@ -15,12 +21,12 @@
       }
     ],
     "no-descending-specificity": null,
+    "property-no-unknown": null,
     "selector-list-comma-newline-after": null,
     "selector-max-id": 1,
     "selector-type-case": null,
     "selector-type-no-unknown": null,
-    "string-quotes": "double",
-    "value-keyword-case": null,
-    "at-rule-no-unknown": null
+    "string-quotes": "single",
+    "value-keyword-case": null
   }
 }
