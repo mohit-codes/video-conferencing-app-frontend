@@ -4,21 +4,30 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { toSentenceCase } from '../../utils/utility';
 import { useFormStyles } from './formComponents.styles';
 
-export const PasswordInputField = ({ changeCallback, blurCallback, id, width, ...rest }) => {
+export const PasswordInputField = ({
+  changeCallback,
+  blurCallback,
+  label,
+  name,
+  width,
+  ...rest
+}) => {
   const classes = useFormStyles({ width });
   const [showPassword, setShowPassword] = useState(false);
   return (
     <>
-      <label htmlFor={id} className={classes.labelStyle}>
-        {toSentenceCase(id)}
-      </label>
+      {label && (
+        <label htmlFor={name} className={classes.labelStyle}>
+          {toSentenceCase(label)}
+        </label>
+      )}
       <div className={classes.passwordInputStyle}>
         <input
           type={showPassword ? 'text' : 'password'}
-          id={id}
           onChange={changeCallback}
           onBlur={blurCallback}
           className={classes.passwordInnerField}
+          name={name}
           {...rest}
         />
         <i
@@ -27,7 +36,7 @@ export const PasswordInputField = ({ changeCallback, blurCallback, id, width, ..
           aria-label='toggle password visibility'
           role='button'
         >
-          {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+          {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
         </i>
       </div>
     </>
@@ -35,8 +44,9 @@ export const PasswordInputField = ({ changeCallback, blurCallback, id, width, ..
 };
 
 PasswordInputField.propTypes = {
+  blurCallback: PropTypes.func,
   changeCallback: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired
 };
 
-export default PasswordInputField;
+PasswordInputField.defaultProps = { blurCallback: () => {} };
