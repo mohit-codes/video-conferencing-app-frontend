@@ -10,6 +10,9 @@ const App = () => {
   const [theme, setTheme] = useState(themes.light);
   const Login = lazy(() => import('./pages/login'));
   const Signup = lazy(() => import('./pages/signup'));
+  const Home = lazy(() => import('./pages/Home'));
+  const JoinMeeting = lazy(() => import('./pages/JoinMeeting'));
+  const Profile = lazy(() => import('./pages/Profile'));
 
   return (
     <ThemeProvider theme={theme}>
@@ -17,6 +20,9 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/join' element={<JoinMeeting />} />
+          <Route path='/profile' element={<Profile />} />
         </Routes>
       </Suspense>
     </ThemeProvider>
