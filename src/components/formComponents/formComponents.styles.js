@@ -2,8 +2,9 @@ import { createUseStyles } from 'react-jss';
 
 export const useFormStyles = createUseStyles({
   inputStyle: {
-    border: '2px solid black',
+    border: '2px solid',
     borderRadius: '0.3rem',
+    marginBottom: '0.3rem',
     padding: '0.5rem 0.3rem',
     position: 'relative',
     width: (props) => (props?.width ? props.width : '100%')
@@ -13,6 +14,7 @@ export const useFormStyles = createUseStyles({
     display: 'block',
     fontSize: '1rem',
     fontWeight: 'normal',
+    marginBottom: '0.4rem',
     marginTop: '10px'
   },
 
@@ -23,8 +25,9 @@ export const useFormStyles = createUseStyles({
   },
 
   passwordInputStyle: {
-    border: '2px solid black',
+    border: '2px solid',
     borderRadius: '0.3rem',
+    marginBottom: '0.9rem',
     padding: '0.3rem 0.3rem 0.4rem',
     position: 'relative',
     width: (props) => (props?.width ? props.width : '100%')

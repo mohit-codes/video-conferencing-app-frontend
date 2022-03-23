@@ -5,5 +5,6 @@ export const themes = {
 
 // global theme object
 export const globalTheme = {
-  fontFamily: 'sans-serif'
+  fontFamily: 'sans-serif',
+  greyColor: '#555555'
 };

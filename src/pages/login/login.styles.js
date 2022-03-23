@@ -36,6 +36,10 @@ export const useLoginStyles = createUseStyles(() => ({
     width: '24rem'
   },
 
+  mb1: {
+    marginBottom: '1rem'
+  },
+
   orSeparator: {
     margin: '0.5rem 0'
   },
