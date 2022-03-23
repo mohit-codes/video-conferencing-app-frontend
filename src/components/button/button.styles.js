@@ -4,6 +4,10 @@ import { globalTheme } from '../../theme';
 export const useButtonStyles = createUseStyles((theme) => ({
   button: {
     '&:disabled': {
+      '&:hover': {
+        cursor: 'not-allowed'
+      },
+
       background: theme.btnDisabledColor,
       cursor: 'not-allowed'
     },

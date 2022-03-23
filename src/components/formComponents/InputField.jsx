@@ -2,17 +2,17 @@ import PropTypes from 'prop-types';
 import { toSentenceCase } from '../../utils/utility';
 import { useFormStyles } from './formComponents.styles';
 
-export const InputField = ({ changeCallback, blurCallback, id, hasLabel, width, ...rest }) => {
+export const InputField = ({ changeCallback, blurCallback, name, label, width, ...rest }) => {
   const classes = useFormStyles({ width });
   return (
     <>
-      {hasLabel && (
-        <label htmlFor={id} className={classes.labelStyle}>
-          {toSentenceCase(id)}
+      {label && (
+        <label htmlFor={name} className={classes.labelStyle}>
+          {toSentenceCase(label)}
         </label>
       )}
       <input
-        id={id}
+        name={name}
         onChange={changeCallback}
         onBlur={blurCallback}
         className={classes.inputStyle}
@@ -24,6 +24,9 @@ export const InputField = ({ changeCallback, blurCallback, id, hasLabel, width, 
 
 InputField.propTypes = {
   changeCallback: PropTypes.func.isRequired,
-  hasLabel: PropTypes.bool.isRequired,
-  id: PropTypes.string.isRequired
+  label: PropTypes.string,
+  name: PropTypes.string.isRequired
+};
+InputField.defaultProps = {
+  label: ''
 };

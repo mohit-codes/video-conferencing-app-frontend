@@ -53,12 +53,25 @@ export const useLayoutStyles = createUseStyles((props) => ({
   '@media (min-width: 992px)': { colLG: colCreater('lg', props) },
   '@media (min-width: 1200px)': { colXL: colCreater('xl', props) },
   '@media (min-width: 1400px)': { colXXL: colCreater('xl', props) },
+
+  card: {
+    backgroundColor: 'white',
+    borderRadius: '0.7rem',
+    boxShadow: '0 4px 15px 3px rgb(0 0 0 / 25%)',
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '2rem',
+    minWidth: '2rem',
+    padding: '0.5rem'
+  },
+
   col: { flex: '1 0' },
   colLG: {},
   colMD: {},
   colSM: {},
   colXL: {},
   colXS: {},
+
   colXXL: {},
 
   container: {
@@ -85,20 +98,16 @@ export const useLayoutStyles = createUseStyles((props) => ({
     extend: [baseContainer, minWidth1200]
   },
 
-  row: {
+  row: (props) => ({
     '& > *': {
       flexShrink: 0,
-      marginTop: '0',
       maxWidth: '100%',
       paddingLeft: '0.5rem',
-      paddingRight: '0.5rem',
-      width: '100%'
+      paddingRight: '0.5rem'
     },
-
     display: 'flex',
     flexWrap: 'wrap',
-    marginLeft: '-0.5rem',
-    marginRight: '-0.5rem',
+    justifyContent: props?.center && 'center',
     marginTop: '0.5rem'
-  }
+  })
 }));
