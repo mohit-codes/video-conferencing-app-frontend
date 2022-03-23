@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { useFormStyles } from './FormComponents.styles';
 import { toSentenceCase } from '../../utils/utility';
+import { useFormStyles } from './formComponents.styles';
 
 export const InputField = ({ changeCallback, blurCallback, id, hasLabel, width, ...rest }) => {
   const classes = useFormStyles({ width });
