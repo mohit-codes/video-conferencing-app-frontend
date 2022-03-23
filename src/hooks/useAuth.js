@@ -1,12 +1,14 @@
 /* eslint-disable require-atomic-updates */
 import axios from 'axios';
 import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/authContext';
 import { BASE_URL } from '../utils/utility';
 
 export const useAuth = () => {
   const { user, token, setToken, setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   async function loginWithUserCredentials(credentials) {
     setLoading(true);
@@ -25,6 +27,12 @@ export const useAuth = () => {
   /*
     Implement signup function here
  */
+  const logout = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.clear();
+    navigate('/');
+  };
 
-  return { loading, loginWithUserCredentials, token, user };
+  return { loading, loginWithUserCredentials, logout, token, user };
 };
