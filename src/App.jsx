@@ -8,8 +8,8 @@ jss.use(JssPluginExtend);
 
 const App = () => {
   const [theme, setTheme] = useState(themes.light);
-  const Login = lazy(() => import('./pages/login'));
-  const Signup = lazy(() => import('./pages/signup'));
+  const Login = lazy(() => import('./pages/Login'));
+  const Signup = lazy(() => import('./pages/Signup'));
   const Home = lazy(() => import('./pages/Home'));
   const JoinMeeting = lazy(() => import('./pages/JoinMeeting'));
   const Profile = lazy(() => import('./pages/Profile'));

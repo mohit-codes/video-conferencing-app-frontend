@@ -9,7 +9,7 @@ import {
   PasswordInputField,
   Row
 } from '../../components';
-import { useLoginStyles } from '../login';
+import { useLoginStyles } from '../Login/login.styles';
 import { literals } from '../../utils/constants';
 import { useSignupStyles } from './signup.styles';
 import { globalTheme } from '../../theme';

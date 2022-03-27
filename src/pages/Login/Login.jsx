@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { Button, Card, Container, InputField, PasswordInputField, Row } from '../../components';
 import { useAuth } from '../../hooks';
 import { literals } from '../../utils/constants';
 import { useLoginStyles } from './login.styles';
-import { useSignupStyles } from '../signup/signup.styles';
+import { useSignupStyles } from '../Signup/signup.styles';
 import { globalTheme } from '../../theme';
 
 export const Login = () => {
@@ -14,6 +14,7 @@ export const Login = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   const { loading, loginWithUserCredentials } = useAuth();
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const onChangeCallback = ({ target }) =>
     setCredentials({ ...credentials, [target.name]: target.value });
@@ -22,9 +23,11 @@ export const Login = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const { success, err } = await loginWithUserCredentials(credentials);
-    if (!success) {
+    const { success, error: err } = await loginWithUserCredentials(credentials);
+    if (err) {
       setError(err);
+    } else {
+      navigate('home');
     }
   };
 
@@ -39,6 +42,7 @@ export const Login = () => {
             <Row center className={classes.subHeading}>
               Log In to {literals.NAME}
             </Row>
+            <Row className={classes.error}>{error}</Row>
             <form className={signupClasses.form} onSubmit={submitHandler}>
               <InputField
                 changeCallback={onChangeCallback}
@@ -77,7 +81,7 @@ export const Login = () => {
               <div className={classes.line} />
             </Row>
             <Row center className={classes.mb1}>
-              <Link to='/signup'>Don’t have an account? Sign up</Link>
+              <Link to='/signup'>Don&apos;t have an account? Sign up</Link>
             </Row>
           </Card>
         </Row>

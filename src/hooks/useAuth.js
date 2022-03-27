@@ -2,26 +2,35 @@
 import axios from 'axios';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import local from '../config/local';
 import { AuthContext } from '../contexts/authContext';
-import { BASE_URL } from '../utils/utility';
+import { axiosRequest } from '../utils/axiosInstance';
 
 export const useAuth = () => {
   const { user, token, setToken, setUser } = useContext(AuthContext);
-  const [loading, setLoading] = useState(false);
+  const [authLoading, setAuthLoading] = useState(false);
   const navigate = useNavigate();
 
   async function loginWithUserCredentials(credentials) {
-    setLoading(true);
-    const { data } = await axios.post(BASE_URL, credentials);
-    if (data.success) {
-      setUser(data.user);
-      setToken(data.token);
-      localStorage.setItem('user', user);
+    setAuthLoading(true);
+    const { response, error } = await axiosRequest({
+      data: credentials,
+      method: 'POST',
+      url: '/user/login'
+    });
+    if (error) {
+      return { error, success: false };
+    } else {
+      const {
+        data: { email, name, token }
+      } = response;
+      setUser({ email, name });
+      setToken(token);
+      localStorage.setItem('user', JSON.stringify({ email, name }));
       localStorage.setItem('token', token);
-      axios.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-      return { err: null, success: true };
+      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+      return { success: true };
     }
-    return { err: data.error, success: false };
   }
 
   /*
@@ -34,5 +43,5 @@ export const useAuth = () => {
     navigate('/');
   };
 
-  return { loading, loginWithUserCredentials, logout, token, user };
+  return { loading: authLoading, loginWithUserCredentials, logout, token, user };
 };
