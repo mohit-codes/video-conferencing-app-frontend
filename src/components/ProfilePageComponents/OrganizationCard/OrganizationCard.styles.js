@@ -20,9 +20,6 @@ export const useOrgStyles = createUseStyles((theme) => ({
     width: '20.0625rem'
   },
   member: {
-    // '& > button > svg': {
-    //   color: 'red !important'
-    // },
     display: 'flex',
     fontSize: '.875rem',
     fontWeight: '500',

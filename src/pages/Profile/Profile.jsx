@@ -4,7 +4,7 @@ import { useAuth } from '../../contexts/authContext';
 import { useProfileStyles } from './Profile.styles';
 
 export const Profile = () => {
-  const { outerContainer, heading, accountInfo, infoText } = useProfileStyles();
+  const { outerContainer, heading, accountInfo, infoText, userAvatar } = useProfileStyles();
   const {
     state: { user }
   } = useAuth();
@@ -22,7 +22,8 @@ export const Profile = () => {
                   src={user?.imageUrl}
                   alt='avatar'
                   loading='lazy'
-                  referrerpolicy='no-referrer'
+                  referrerPolicy='no-referrer'
+                  className={userAvatar}
                 />
               ) : (
                 <FaRegUserCircle size='6rem' aria-label='default avatar' />

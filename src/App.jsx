@@ -17,6 +17,7 @@ const Signup = lazy(() => import('./pages/Signup'));
 const Home = lazy(() => import('./pages/Home'));
 const JoinMeeting = lazy(() => import('./pages/JoinMeeting'));
 const Profile = lazy(() => import('./pages/Profile'));
+const Meeting = lazy(() => import('./pages/Meeting'));
 
 const App = () => {
   const [theme, setTheme] = useState(themes.light);
@@ -33,6 +34,7 @@ const App = () => {
               <Route path='/home' element={<Home />} />
               <Route path='/join' element={<JoinMeeting />} />
               <Route path='/profile' element={<Profile />} />
+              <Route path='/meet/:meetingCode' element={<Meeting />} />
               <Route path='*' element={<Navigate to='/home' replace />} />
             </>
           ) : (
