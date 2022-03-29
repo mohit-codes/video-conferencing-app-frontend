@@ -14,7 +14,7 @@ export const useParticipantsStyles = createUseStyles((props) => ({
   participant: {
     alignItems: 'center',
     display: 'flex',
-    margin: '0.6rem 0',
+    margin: '1rem 0',
     width: '100%'
   },
   userName: {

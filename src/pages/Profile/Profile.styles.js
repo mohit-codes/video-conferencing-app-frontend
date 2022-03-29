@@ -9,7 +9,8 @@ export const useProfileStyles = createUseStyles((theme) => ({
     },
     display: 'flex',
     justifyContent: 'space-between',
-    width: '25rem'
+    margin: '0 0 1rem 1rem',
+    width: '30rem'
   },
   heading: {
     fontSize: '1.5rem',
@@ -18,9 +19,15 @@ export const useProfileStyles = createUseStyles((theme) => ({
   },
   infoText: {
     fontSize: '1.125rem',
-    fontWeight: '600'
+    fontWeight: '600',
+    marginLeft: '3rem'
   },
   outerContainer: {
     padding: '0 6.25rem'
+  },
+  userAvatar: {
+    borderRadius: '100%',
+    height: '100%',
+    width: '100%'
   }
 }));
