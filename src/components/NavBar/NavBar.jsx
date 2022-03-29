@@ -36,7 +36,7 @@ export const NavBar = () => {
             src={user?.imageUrl}
             alt='avatar'
             loading='lazy'
-            referrerpolicy='no-referrer'
+            referrerPolicy='no-referrer'
             className={classes.userAvatar}
           />
         ) : (
