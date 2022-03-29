@@ -1,11 +1,13 @@
 import { FaRegUserCircle } from 'react-icons/fa';
 import { Button, NavBar, Organizations } from '../../components';
-import { useAuth } from '../../hooks';
+import { useAuth } from '../../contexts/authContext';
 import { useProfileStyles } from './Profile.styles';
 
 export const Profile = () => {
   const { outerContainer, heading, accountInfo, infoText } = useProfileStyles();
-  const { user } = useAuth();
+  const {
+    state: { user }
+  } = useAuth();
 
   return (
     <div>
@@ -15,8 +17,13 @@ export const Profile = () => {
           <p className={heading}>Account Info</p>
           <div className={accountInfo}>
             <div>
-              {user ? (
-                <img src={user?.imageUrl} alt='avatar' loading='lazy' />
+              {user?.imageUrl ? (
+                <img
+                  src={user?.imageUrl}
+                  alt='avatar'
+                  loading='lazy'
+                  referrerpolicy='no-referrer'
+                />
               ) : (
                 <FaRegUserCircle size='6rem' aria-label='default avatar' />
               )}
