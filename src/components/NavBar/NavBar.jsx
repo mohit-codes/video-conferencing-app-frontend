@@ -2,15 +2,26 @@ import React, { useState } from 'react';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { HiOutlineChevronDown } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
-import { useNavBarStyles } from './NavBar.styles';
+import { useAuth } from '../../contexts/authContext';
+import { resetAuth } from '../../utils/actions';
 import { literals } from '../../utils/constants';
-import { useAuth } from '../../hooks';
+import { useNavBarStyles } from './NavBar.styles';
 
 export const NavBar = () => {
   const [showPopUp, setShowPopUp] = useState(false);
-  const { user, logout } = useAuth();
+  const {
+    state: { user },
+    dispatch
+  } = useAuth();
   const navigate = useNavigate();
   const classes = useNavBarStyles();
+
+  const logout = () => {
+    localStorage.clear();
+    dispatch(resetAuth());
+    navigate('/');
+  };
+
   return (
     <nav className={classes.nav}>
       <p className={classes.logo}>{literals.NAME}</p>
@@ -19,8 +30,12 @@ export const NavBar = () => {
         className={classes.popUpButton}
         onClick={() => setShowPopUp((val) => !val)}
       >
-        <FaRegUserCircle size='1.2rem' />
-        <p>{user ? user.name : 'User'}</p>
+        {user?.imageUrl ? (
+          <img src={user?.imageUrl} alt='avatar' loading='lazy' referrerpolicy='no-referrer' />
+        ) : (
+          <FaRegUserCircle size='1.2rem' />
+        )}
+        <p>{user.name}</p>
         <HiOutlineChevronDown size='1.2rem' />
       </button>
       {showPopUp && (
