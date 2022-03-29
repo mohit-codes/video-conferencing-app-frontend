@@ -3,3 +3,4 @@ export { InputField, PasswordInputField } from './formComponents';
 export { Card, Col, Container, Row } from './layout';
 export { NavBar } from './NavBar';
 export { OrganizationCard, Organizations } from './ProfilePageComponents';
+export { MeetingDetailsSidePanel, MeetingLinkPopUp } from './MeetingComponents';
