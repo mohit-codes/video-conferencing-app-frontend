@@ -22,6 +22,7 @@ export const NavBar = () => {
     navigate('/');
   };
 
+  const firstName = user?.name?.split(' ')[0];
   return (
     <nav className={classes.nav}>
       <p className={classes.logo}>{literals.NAME}</p>
@@ -31,11 +32,17 @@ export const NavBar = () => {
         onClick={() => setShowPopUp((val) => !val)}
       >
         {user?.imageUrl ? (
-          <img src={user?.imageUrl} alt='avatar' loading='lazy' referrerpolicy='no-referrer' />
+          <img
+            src={user?.imageUrl}
+            alt='avatar'
+            loading='lazy'
+            referrerpolicy='no-referrer'
+            className={classes.userAvatar}
+          />
         ) : (
           <FaRegUserCircle size='1.2rem' />
         )}
-        <p>{user.name}</p>
+        <p>{firstName}</p>
         <HiOutlineChevronDown size='1.2rem' />
       </button>
       {showPopUp && (

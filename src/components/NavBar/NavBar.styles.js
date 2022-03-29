@@ -53,5 +53,9 @@ export const useNavBarStyles = createUseStyles((theme) => ({
     fontSize: '1rem',
     padding: '0.3rem 0.5rem',
     width: '8rem'
+  },
+  userAvatar: {
+    borderRadius: '100%',
+    width: '1.5rem'
   }
 }));
