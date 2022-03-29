@@ -42,7 +42,7 @@ export const useNavBarStyles = createUseStyles((theme) => ({
     '&>p:nth-of-type(1)': {
       marginLeft: '0.5rem'
     },
-    '&>svg:nth-of-type(2)': {
+    '&>svg:nth-of-type(1)': {
       marginLeft: 'auto'
     },
     alignItems: 'center',
