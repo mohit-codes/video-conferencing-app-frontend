@@ -1,5 +1,5 @@
 import { useMeetingStyles } from './Meeting.styles';
-import { MeetingDetailsSidePanel, MeetingLinkPopUp } from '../../components';
+import { Footer, MeetingDetailsSidePanel, MeetingLinkPopUp } from '../../components';
 
 export const Meeting = () => {
   const classes = useMeetingStyles();
@@ -7,6 +7,9 @@ export const Meeting = () => {
     <div className={classes.outerContainer}>
       <MeetingLinkPopUp link='.com/meet/ZZZZZ' />
       <MeetingDetailsSidePanel />
+      <div className={classes.footer}>
+        <Footer meetingCode='ABC-CDE-EFG' />
+      </div>
     </div>
   );
 };
