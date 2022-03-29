@@ -14,6 +14,10 @@ export const useLoginStyles = createUseStyles(() => ({
     color: 'red'
   },
 
+  errorPara: {
+    maxWidth: '20rem'
+  },
+
   heading: {
     backgroundColor: 'white',
     fontSize: '2.5rem',
@@ -43,7 +47,6 @@ export const useLoginStyles = createUseStyles(() => ({
   mb1: {
     marginBottom: '1rem'
   },
-
   orSeparator: {
     margin: '0.5rem 0'
   },
