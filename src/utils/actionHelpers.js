@@ -13,9 +13,6 @@ export const loginUser = async (credentials) => {
     const {
       data: { email, name, token }
     } = response;
-    localStorage.setItem('user', JSON.stringify({ email, name }));
-    localStorage.setItem('token', token);
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     return { payload: { email, name, token }, success: true };
   }
 };

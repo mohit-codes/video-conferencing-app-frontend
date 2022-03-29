@@ -1,5 +1,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
+import axios from 'axios';
 import { createContext, useContext, useReducer } from 'react';
+import { axiosInstance } from '../utils/axiosInstance';
 import { actionTypes } from '../utils/constants';
 
 const { LOGIN, SET_IS_AUTH_LOADING, RESET_AUTH } = actionTypes;
@@ -11,11 +13,16 @@ const initState = {
   user: JSON.parse(localStorage.getItem('user')) ?? { email: '', imageUrl: '', name: '' }
 };
 
-const setUser = (state, { token, name, email, imageUrl }) => ({
-  ...state,
-  token,
-  user: { email, imageUrl, name }
-});
+const setUser = (state, { token, name, email, imageUrl }) => {
+  localStorage.setItem('user', JSON.stringify({ email, imageUrl, name }));
+  localStorage.setItem('token', token);
+  axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
+  return {
+    ...state,
+    token,
+    user: { email, imageUrl, name }
+  };
+};
 
 const actionMap = {
   [LOGIN]: setUser,
