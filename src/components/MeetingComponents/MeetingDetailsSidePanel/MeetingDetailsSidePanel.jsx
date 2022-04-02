@@ -20,13 +20,13 @@ export const MeetingDetailsSidePanel = () => {
           className={selectedTab === 0 ? classes.focusedTab : classes.blurTab}
           onClick={() => setSelectedTab(0)}
         >
-          <FiUsers aria-label='participants' size='1.2rem' />
+          <FiUsers aria-label='participants' size='20' />
         </button>
         <button
           className={selectedTab === 1 ? classes.focusedTab : classes.blurTab}
           onClick={() => setSelectedTab(1)}
         >
-          <FiMessageSquare aria-label='chats' size='1.2rem' />
+          <FiMessageSquare aria-label='chats' size='20' />
         </button>
       </div>
       <div>{selectedTab === 0 ? <Participants /> : <Chat />}</div>

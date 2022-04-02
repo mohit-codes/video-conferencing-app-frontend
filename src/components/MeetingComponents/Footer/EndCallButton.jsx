@@ -6,7 +6,7 @@ export const EndCallButton = ({ clickCallback }) => {
 
   return (
     <button className={endCallButton} onClick={clickCallback}>
-      <FiPhone size='1.2rem' />
+      <FiPhone size='20' />
     </button>
   );
 };

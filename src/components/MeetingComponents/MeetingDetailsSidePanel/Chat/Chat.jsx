@@ -49,7 +49,7 @@ export const Chat = () => {
       <div className={classes.inputBox}>
         <input type='text' placeholder='Type Message here' className={classes.sentMessageInput} />
         <button aria-label='send message' className={classes.sendButton}>
-          <BiSend size='1.5rem' />
+          <BiSend size='24' />
         </button>
       </div>
     </div>

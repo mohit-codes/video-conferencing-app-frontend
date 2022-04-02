@@ -157,7 +157,7 @@
     "no-tabs": "off",
     "no-ternary": "off",
     "no-trailing-spaces": "warn",
-    "no-undef": "off",
+    "no-undef": "error",
     "no-undefined": "off",
     "no-underscore-dangle": "off",
     "no-unused-expressions": "off",
@@ -215,6 +215,7 @@
     "require-await": "off",
     "require-unicode-regexp": "warn",
     "semi": "off",
+    "class-methods-use-this":"off",
     "sort-imports": [
       "warn",
       {

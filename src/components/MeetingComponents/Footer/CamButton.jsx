@@ -6,7 +6,7 @@ export const CamButton = ({ isOn, clickCallback }) => {
 
   return (
     <button className={roundButton} onClick={clickCallback}>
-      {isOn ? <BsCameraVideo size='1.2rem' /> : <BsCameraVideoOff size='1.2rem' />}
+      {isOn ? <BsCameraVideo size='20' /> : <BsCameraVideoOff size='20' />}
     </button>
   );
 };
