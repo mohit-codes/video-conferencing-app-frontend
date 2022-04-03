@@ -39,7 +39,6 @@ export const useFooterStyles = createUseStyles(() => ({
     border: '0.125rem solid black',
     justifyContent: 'space-evenly',
     marginLeft: 'auto',
-    marginRight: 'auto',
-    width: '10rem'
+    marginRight: 'auto'
   }
 }));

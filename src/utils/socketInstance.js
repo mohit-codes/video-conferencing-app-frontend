@@ -5,14 +5,14 @@ let socketInstance = null;
 const peers = {};
 
 const initializePeerConnection = () =>
-  new Peer('l1i5k08m', {
+  new Peer('', {
     host: 'localhost',
     port: 4430,
     secure: false
   });
 
 const initializeSocketConnection = () =>
-  openSocket.connect('http://localhost:8080', {
+  openSocket.connect('ws://localhost:8080', {
     reconnection: true,
     reconnectionAttempts: 10,
     rejectUnauthorized: false,
@@ -67,12 +67,12 @@ class SocketConnection {
     this.socket = initializeSocketConnection();
     if (this.socket) this.isSocketConnected = true;
     if (this.myPeer) this.isPeerConnected = true;
-    this.initPeerEvents();
     this.initSocketEvents();
+    this.initPeerEvents();
   }
 
   initPeerEvents = () => {
-    this.myPeer.on('open', async (id) => {
+    this.myPeer.on('open', (id) => {
       const { userDetails } = this.settings;
       this.myID = id;
       const roomID = window.location.pathname.split('/')[2];
@@ -83,7 +83,7 @@ class SocketConnection {
       };
       console.log('peers established and joined room', userData);
       this.socket.emit('join-room', userData);
-      await this.setNavigatorToStream();
+      this.setNavigatorToStream();
     });
     this.myPeer.on('error', (err) => {
       console.log('peer connection error', err);
@@ -120,34 +120,31 @@ class SocketConnection {
     // });
   };
 
-  setNavigatorToStream = async () => {
-    const stream = await this.getVideoAudioStream();
-    if (stream) {
-      this.streaming = true;
-      this.settings.updateInstance('streaming', true);
-      this.createVideo({ id: this.myID, stream });
-      this.setPeersListeners(stream);
-      this.newUserConnection(stream);
-    }
-  };
-
-  getVideoAudioStream = (video = true, audio = true) => {
-    const myNavigator =
-      navigator.getUserMedia ||
-      navigator.webkitGetUserMedia ||
-      navigator.mozGetUserMedia ||
-      navigator.msGetUserMedia;
-    return myNavigator({
+  getVideoAudioStream = (video = true, audio = true) => navigator.mediaDevices.getUserMedia({
       audio,
       video: video
         ? {
-            frameRate: 15,
+            frameRate: 12,
             height: { ideal: 720, max: 1080, min: 480 },
             noiseSuppression: true,
             width: { ideal: 1280, max: 1920, min: 640 }
           }
         : false
     });
+
+  setNavigatorToStream = () => {
+    this.getVideoAudioStream()
+      .then((stream) => {
+        if (stream) {
+          console.log('stream', stream);
+          this.streaming = true;
+          this.settings.updateInstance('streaming', true);
+          this.createVideo({ id: this.myID, stream });
+          this.setPeersListeners(stream);
+          this.newUserConnection(stream);
+        }
+      })
+      .catch((error) => console.log(error.name, error.message));
   };
 
   setPeersListeners = (stream) => {
@@ -190,7 +187,9 @@ class SocketConnection {
 
   newUserConnection = (stream) => {
     this.socket.on('new-user-connect', (userData) => {
-      console.log('New User Connected', userData);
+      console.log('New user connected', userData);
+      // eslint-disable-next-line
+      alert(`New user connected \n${JSON.stringify(userData, null, 2)}`);
       const { userID } = userData;
       const call = this.myPeer.call(userID, stream, { metadata: { id: this.myID } });
       call.on('stream', (userVideoStream) => {
@@ -223,7 +222,6 @@ class SocketConnection {
         : navigator.mediaDevices.getDisplayMedia();
     return new Promise((resolve) => {
       media.then((stream) => {
-        // @ts-ignore
         const myVideo = this.getMyVideo();
         if (type === 'displayMedia') {
           this.toggleVideoTrack({ audio, video });
@@ -252,32 +250,51 @@ class SocketConnection {
 
   toggleVideoTrack = (status) => {
     const myVideo = this.getMyVideo();
-    // @ts-ignore
-    if (myVideo && !status.video)
+    if (myVideo && !status.video) {
       myVideo.srcObject?.getVideoTracks().forEach((track) => {
         if (track.kind === 'video') {
-          // track.enabled = status.video;
-          // this.socket.emit('user-video-off', {id: this.myID, status: true});
-          // changeMediaView(this.myID, true);
           !status.video && track.stop();
         }
       });
-    else if (myVideo) {
-      // this.socket.emit('user-video-off', {id: this.myID, status: false});
-      // changeMediaView(this.myID, false);
+    } else if (myVideo) {
       this.reInitializeStream(status.video, status.audio);
     }
   };
 
   toggleAudioTrack = (status) => {
     const myVideo = this.getMyVideo();
-    // @ts-ignore
     if (myVideo)
       myVideo.srcObject?.getAudioTracks().forEach((track) => {
         // eslint-disable-next-line
         if (track.kind === 'audio') track.enabled = status.audio;
         status.audio ? this.reInitializeStream(status.video, status.audio) : track.stop();
       });
+  };
+
+  destroyConnection = () => {
+    const myMediaTracks = this.videoContainer[this.myID]?.stream.getTracks();
+    myMediaTracks?.forEach((track) => {
+      track.stop();
+    });
+    socketInstance?.socket.disconnect();
+    this.myPeer.destroy();
+  };
+
+  replaceStream = (mediaStream) => {
+    Object.values(peers).map((peer) => {
+      peer.peerConnection?.getSenders().map((sender) => {
+        if (sender.track.kind == 'audio') {
+          if (mediaStream.getAudioTracks().length > 0) {
+            sender.replaceTrack(mediaStream.getAudioTracks()[0]);
+          }
+        }
+        if (sender.track.kind == 'video') {
+          if (mediaStream.getVideoTracks().length > 0) {
+            sender.replaceTrack(mediaStream.getVideoTracks()[0]);
+          }
+        }
+      });
+    });
   };
 }
 

@@ -11,9 +11,8 @@ export const Meeting = () => {
   const navigate = useNavigate();
   const socketInstance = useRef(null);
   const [isMicOn, setIsMicOn] = useState(true);
-  const [camStatus, setCamStatus] = useState(true);
+  const [isCamOn, setIsCamOn] = useState(true);
   const [streaming, setStreaming] = useState(false);
-  const [chatToggle, setChatToggle] = useState(false);
   const {
     state: { user }
   } = useAuth();
@@ -33,7 +32,8 @@ export const Meeting = () => {
     });
   };
 
-  const handleDisconnect = () => {
+  const onDisconnect = () => {
+    console.log('disconnect');
     socketInstance.current?.destroyConnection();
     navigate('/');
   };
@@ -45,25 +45,25 @@ export const Meeting = () => {
       myVideo.srcObject?.getAudioTracks().forEach((track) => {
         if (track.kind === 'audio')
           // track.enabled = !isMicOn;
-          isMicOn ? track.stop() : reInitializeStream(camStatus, !isMicOn);
+          isMicOn ? track.stop() : reInitializeStream(isCamOn, !isMicOn);
       });
     setIsMicOn(!isMicOn);
   };
 
-  const handleCam = () => {
+  const onCamClick = () => {
     if (!displayStream) {
       const { toggleVideoTrack } = socketInstance.current;
-      toggleVideoTrack({ audio: isMicOn, video: !camStatus });
-      setCamStatus(!camStatus);
+      toggleVideoTrack({ audio: isMicOn, video: !isCamOn });
+      setIsCamOn(!isCamOn);
     }
   };
 
-  const toggleScreenShare = () => {
+  const onScreenShareClick = () => {
     const { reInitializeStream, toggleVideoTrack } = socketInstance.current;
     displayStream && toggleVideoTrack({ audio: true, video: false });
     reInitializeStream(false, true, !displayStream ? 'displayMedia' : 'userMedia').then(() => {
       setDisplayStream(!displayStream);
-      setCamStatus(false);
+      setIsCamOn(false);
     });
   };
 
@@ -73,6 +73,7 @@ export const Meeting = () => {
       socketInstance.current?.destoryConnection();
     };
   }, []);
+  console.log(Footer);
 
   return (
     <div className={classes.outerContainer}>
@@ -82,9 +83,13 @@ export const Meeting = () => {
       <div className={classes.footer}>
         <Footer
           meetingCode={meetingCode}
-          disconnect={handleDisconnect}
+          disconnect={onDisconnect}
           isMicOn={isMicOn}
           onMicClick={onMicClick}
+          isCamOn={isCamOn}
+          onCamClick={onCamClick}
+          isScreenShareOn={displayStream}
+          onScreenShareClick={onScreenShareClick}
         />
       </div>
     </div>
