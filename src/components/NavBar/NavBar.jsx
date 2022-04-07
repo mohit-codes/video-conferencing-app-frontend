@@ -40,10 +40,10 @@ export const NavBar = () => {
             className={classes.userAvatar}
           />
         ) : (
-          <FaRegUserCircle size='1.2rem' />
+          <FaRegUserCircle size='20' />
         )}
         <p>{firstName}</p>
-        <HiOutlineChevronDown size='1.2rem' />
+        <HiOutlineChevronDown size='20' />
       </button>
       {showPopUp && (
         <div className={classes.popUp}>

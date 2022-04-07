@@ -8,16 +8,8 @@ export const useOrgStyles = createUseStyles((theme) => ({
       outline: 'none',
       padding: '0'
     },
-    backgroundColor: 'white',
-    borderRadius: '0.7rem',
-    boxShadow: '0 4px 15px 3px rgb(0 0 0 / 25%)',
-    display: 'flex',
-    flexDirection: 'column',
-    height: '18.5625rem',
-    marginLeft: '2rem',
-    padding: '1.5rem',
-    textAlign: 'left',
-    width: '20.0625rem'
+    height: '18rem',
+    padding: '1.5rem'
   },
   member: {
     display: 'flex',

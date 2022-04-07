@@ -7,6 +7,9 @@ export const useOrgStyles = createUseStyles((theme) => ({
     padding: '0.9rem 0.1rem',
     width: '100%'
   },
+  mblock10: {
+    marginBlock: '10px'
+  },
   newOrganization: {
     '&>svg': {
       backgroundColor: ' transparent',
@@ -19,7 +22,6 @@ export const useOrgStyles = createUseStyles((theme) => ({
     alignItems: 'center',
     display: 'flex',
     height: '18rem',
-    justifyContent: 'center',
-    width: '20rem'
+    justifyContent: 'center'
   }
 }));

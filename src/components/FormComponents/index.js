@@ -1,2 +1,4 @@
-export { InputField } from './InputField';
-export { PasswordInputField } from './PasswordInputField';
+import { InputField } from './InputField';
+import { PasswordInputField } from './PasswordInputField';
+
+export { InputField, PasswordInputField };

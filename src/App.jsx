@@ -11,7 +11,8 @@ jss.use(JssPluginExtend);
 /**
  * when app rerenders, a new instance of these lazy components gets created,
  * causing the tree to change and child component to unmount and then remount,
- * instead of just rerendering.
+ * instead of just rerendering. so putting them outside the app insures that
+ * they instantiate only once.
  */
 const Login = lazy(() => import('./pages/Login'));
 const Signup = lazy(() => import('./pages/Signup'));
@@ -19,7 +20,6 @@ const Home = lazy(() => import('./pages/Home'));
 const JoinMeeting = lazy(() => import('./pages/JoinMeeting'));
 const Profile = lazy(() => import('./pages/Profile'));
 const Meeting = lazy(() => import('./pages/Meeting'));
-const NewMeeting = lazy(() => import('./pages/NewMeeting'));
 
 const App = () => {
   const [theme, setTheme] = useState(themes.light);
@@ -37,7 +37,6 @@ const App = () => {
               <Route path='/join' element={<JoinMeeting />} />
               <Route path='/profile' element={<Profile />} />
               <Route path='/meet/:meetingCode' element={<Meeting />} />
-              <Route path='/new-meet' element={<NewMeeting />} />
               <Route path='*' element={<Navigate to='/home' replace />} />
             </>
           ) : (

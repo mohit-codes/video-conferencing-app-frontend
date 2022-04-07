@@ -1,12 +1,12 @@
 import { FiMic, FiMicOff } from 'react-icons/fi';
 import { useFooterStyles } from './Footer.styles';
 
-export const MicButton = ({ isOn, clickCallback }) => {
+export const MicButton = ({ isOn, onClick }) => {
   const { roundButton } = useFooterStyles();
 
   return (
-    <button className={roundButton} onClick={clickCallback}>
-      {isOn ? <FiMic size='1.2rem' /> : <FiMicOff size='1.2rem' />}
+    <button className={roundButton} onClick={onClick}>
+      {isOn ? <FiMic size='20' /> : <FiMicOff size='20' />}
     </button>
   );
 };
