@@ -10,7 +10,8 @@ jss.use(JssPluginExtend);
 /**
  * when app rerenders, a new instance of these lazy components gets created,
  * causing the tree to change and child component to unmount and then remount,
- * instead of just rerendering.
+ * instead of just rerendering. so putting them outside the app insures that
+ * they instantiate only once.
  */
 const Login = lazy(() => import('./pages/Login'));
 const Signup = lazy(() => import('./pages/Signup'));

@@ -53,9 +53,9 @@ export const Participants = () => {
       <div className={classes.inner}>
         {data.map((participant) => (
           <div key={participant.id} className={classes.participant}>
-            <FaRegUserCircle size='1.2rem' />
+            <FaRegUserCircle size='20' />
             <span className={classes.userName}>{participant.name}</span>
-            <IoEllipsisVertical size='1.2rem' className={classes.ellipsis} />
+            <IoEllipsisVertical size='20' className={classes.ellipsis} />
           </div>
         ))}
       </div>

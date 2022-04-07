@@ -2,22 +2,23 @@ import { IoEllipsisVertical } from 'react-icons/io5';
 import { GrAddCircle } from 'react-icons/gr';
 import { FiTrash2 } from 'react-icons/fi';
 import { useOrgStyles } from './OrganizationCard.styles';
+import { Card } from '../../Layout';
 
 export const OrganizationCard = ({ org }) => {
   const classes = useOrgStyles();
   return (
-    <div className={classes.card}>
+    <Card className={classes.card}>
       <div className={classes.title}>
         <span>{org.orgName}</span>
         <button>
-          <IoEllipsisVertical size='1.2rem' />
+          <IoEllipsisVertical size='20' />
         </button>
       </div>
       <div>
         <div className={classes.title}>
           <span>Members</span>
           <button>
-            <GrAddCircle size='1.2rem' />
+            <GrAddCircle size='20' />
           </button>
         </div>
         <div className={classes.members}>
@@ -28,13 +29,13 @@ export const OrganizationCard = ({ org }) => {
                 'ADMIN'
               ) : (
                 <button>
-                  <FiTrash2 color='red' size='1.2rem' />
+                  <FiTrash2 color='red' size='20' />
                 </button>
               )}
             </p>
           ))}
         </div>
       </div>
-    </div>
+    </Card>
   );
 };

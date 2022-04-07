@@ -14,7 +14,7 @@ export const MeetingLinkPopUp = ({ link }) => {
         onClick={() => copyToClipBoard(link)}
       >
         {link}
-        <FiCopy size='1.5rem' />
+        <FiCopy size='24' />
       </button>
       <p>your permission is required for anyone who requests to join the meeting.</p>
     </div>
