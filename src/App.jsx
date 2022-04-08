@@ -2,6 +2,7 @@ import JssPluginExtend from 'jss-plugin-extend';
 import { lazy, Suspense, useState } from 'react';
 import { jss, ThemeProvider } from 'react-jss';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { Loading } from './components';
 import { useAuth } from './contexts/authContext';
 import { themes } from './theme';
 
@@ -28,7 +29,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Suspense fallback='Loading....'>
+      <Suspense fallback={<Loading />}>
         <Routes>
           {token ? (
             <>

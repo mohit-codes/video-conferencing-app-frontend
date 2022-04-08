@@ -120,7 +120,9 @@ class SocketConnection {
     // });
   };
 
-  getVideoAudioStream = (video = true, audio = true) => navigator.mediaDevices.getUserMedia({
+
+  getVideoAudioStream = (video = true, audio = true) =>
+    navigator.mediaDevices.getUserMedia({
       audio,
       video: video
         ? {

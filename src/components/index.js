@@ -5,8 +5,12 @@ import { NavBar } from './NavBar';
 import { OrganizationCard, Organizations } from './ProfilePageComponents';
 import { Footer, MeetingDetailsSidePanel, MeetingLinkPopUp } from './MeetingComponents';
 import { AddOrgModal } from './Modals';
+import { Spinner } from './Spinner';
+import { Loading } from './SuspenseLoading';
 
 export {
+  Spinner,
+  Loading,
   AddOrgModal,
   Button,
   Card,
