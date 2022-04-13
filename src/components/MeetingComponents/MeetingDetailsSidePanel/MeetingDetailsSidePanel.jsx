@@ -5,7 +5,7 @@ import { Participants } from './Participants';
 import { Chat } from './Chat';
 import { useSidePanelStyles } from './MeetingDetailsSidePanel.styles';
 
-export const MeetingDetailsSidePanel = () => {
+export const MeetingDetailsSidePanel = ({ setShowSidePanel }) => {
   const classes = useSidePanelStyles();
   const [selectedTab, setSelectedTab] = useState(0);
 
@@ -13,7 +13,7 @@ export const MeetingDetailsSidePanel = () => {
     <div className={classes.outer}>
       <div className={classes.heading}>
         <span> Meeting Details</span>
-        <GrClose role='button' aria-label='close' onClick={() => {}} />
+        <GrClose role='button' aria-label='close' onClick={() => setShowSidePanel(false)} />
       </div>
       <div className={classes.tabs}>
         <button

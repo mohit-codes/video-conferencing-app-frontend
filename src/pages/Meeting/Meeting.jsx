@@ -8,6 +8,8 @@ import { createSocketInstance } from '../../utils/socketInstance';
 export const Meeting = () => {
   const classes = useMeetingStyles();
   const { meetingCode } = useParams();
+  const [showSidePanel, setShowSidePanel] = useState(false);
+  const [showMeetingLinkPopUp, setShowMeetingLinkPopUp] = useState(true);
   const navigate = useNavigate();
   const socketInstance = useRef(null);
   const [isMicOn, setIsMicOn] = useState(true);
@@ -36,6 +38,7 @@ export const Meeting = () => {
     console.log('disconnect');
     socketInstance.current?.destroyConnection();
     navigate('/');
+    window.location.reload();
   };
 
   const onMicClick = () => {
@@ -69,6 +72,9 @@ export const Meeting = () => {
 
   useEffect(() => {
     startConnection();
+    setTimeout(() => {
+      setShowMeetingLinkPopUp(false);
+    }, 10000);
     return () => {
       socketInstance.current?.destoryConnection();
     };
@@ -78,8 +84,10 @@ export const Meeting = () => {
   return (
     <div className={classes.outerContainer}>
       <div id='room-container' />
-      <MeetingLinkPopUp link={`http://localhost:3000/meet/${meetingCode}`} />
-      <MeetingDetailsSidePanel />
+      {showMeetingLinkPopUp && (
+        <MeetingLinkPopUp link={`http://localhost:3000/meet/${meetingCode}`} />
+      )}
+      {showSidePanel && <MeetingDetailsSidePanel setShowSidePanel={setShowSidePanel} />}
       <div className={classes.footer}>
         <Footer
           meetingCode={meetingCode}
@@ -90,6 +98,7 @@ export const Meeting = () => {
           onCamClick={onCamClick}
           isScreenShareOn={displayStream}
           onScreenShareClick={onScreenShareClick}
+          setShowSidePanel={setShowSidePanel}
         />
       </div>
     </div>
