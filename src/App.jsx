@@ -3,6 +3,7 @@ import { lazy, Suspense, useState } from 'react';
 import { jss, ThemeProvider } from 'react-jss';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Loading } from './components';
+import { MeetProvider } from './contexts';
 import { useAuth } from './contexts/authContext';
 import { themes } from './theme';
 
@@ -38,7 +39,14 @@ const App = () => {
               <Route path='/join' element={<JoinMeeting />} />
               <Route path='/profile' element={<Profile />} />
               <Route path='/new' element={<NewMeeting />} />
-              <Route path='/meet/:meetingCode' element={<Meeting />} />
+              <Route
+                path='/meet/:meetingCode'
+                element={
+                  <MeetProvider>
+                    <Meeting />
+                  </MeetProvider>
+                }
+              />
               <Route path='*' element={<Navigate to='/home' replace />} />
             </>
           ) : (

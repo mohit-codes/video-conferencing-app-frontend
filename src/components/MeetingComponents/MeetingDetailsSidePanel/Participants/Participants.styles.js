@@ -1,6 +1,11 @@
 import { createUseStyles } from 'react-jss';
 
 export const useParticipantsStyles = createUseStyles((props) => ({
+  avatar: {
+    borderRadius: '100%',
+    height: '2rem',
+    width: '2rem'
+  },
   ellipsis: {
     marginLeft: 'auto'
   },
