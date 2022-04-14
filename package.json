@@ -84,5 +84,8 @@
     "stylelint": "stylelint \"**/*.{css,scss,sass,js,jsx}\" ",
     "test": "react-scripts test"
   },
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "engines": {
+    "node": "16.13.0"
+  }
 }
