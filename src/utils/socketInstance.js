@@ -47,6 +47,8 @@ class SocketConnection {
 
   messages = [];
 
+  participants = [];
+
   settings;
 
   streaming = false;
@@ -83,6 +85,8 @@ class SocketConnection {
       };
       console.log('peers established and joined room', userData);
       this.socket.emit('join-room', userData);
+      this.participants.push(userData);
+      this.settings.updateInstance('addParticipant', userData);
       this.setNavigatorToStream();
     });
     this.myPeer.on('error', (err) => {
@@ -99,6 +103,8 @@ class SocketConnection {
       console.log('user disconnected-- closing peers', userID);
       peers[userID] && peers[userID].close();
       this.removeVideo(userID);
+      this.participants = this.participants.filter((peer) => peer.userID !== userID);
+      this.settings.updateInstance('removeParticipant', userID);
     });
     this.socket.on('disconnect', () => {
       console.log('socket disconnected --');
@@ -107,9 +113,9 @@ class SocketConnection {
       console.log('socket error --', err);
     });
     this.socket.on('new-broadcast-messsage', (data) => {
-      this.message.push(data);
-      this.settings.updateInstance('message', this.message);
-      console.log(`${data.message.message} By ${data.userData.name}`);
+      this.messages.push(data);
+      this.settings.updateInstance('message', data);
+      console.log(`${data.message} By ${data.userData.name}`);
     });
     this.socket.on('display-media', (data) => {
       if (data.value) checkAndAddClass(document.getElementById(data.userID), 'displayMedia');
@@ -128,7 +134,7 @@ class SocketConnection {
             frameRate: 12,
             height: { ideal: 720, max: 1080, min: 480 },
             noiseSuppression: true,
-            width: { ideal: 1280, max: 1920, min: 640 }
+            width: { ideal: 580, max: 1920, min: 640 }
           }
         : false
     });
@@ -136,6 +142,7 @@ class SocketConnection {
   setNavigatorToStream = () => {
     this.getVideoAudioStream()
       .then((stream) => {
+        console.log(stream);
         if (stream) {
           console.log('stream', stream);
           this.streaming = true;
@@ -192,6 +199,8 @@ class SocketConnection {
       // eslint-disable-next-line
       alert(`New user connected \n${JSON.stringify(userData, null, 2)}`);
       const { userID } = userData;
+      this.participants.push(userData);
+      this.settings.updateInstance('addParticipant', userData);
       const call = this.myPeer.call(userID, stream, { metadata: { id: this.myID } });
       call.on('stream', (userVideoStream) => {
         this.createVideo({ id: userID, stream: userVideoStream, userData });
@@ -295,6 +304,12 @@ class SocketConnection {
           }
         }
       });
+    });
+  };
+
+  sendMessage = (text) => {
+    this.socket.emit('broadcast-message', {
+      message: text
     });
   };
 }

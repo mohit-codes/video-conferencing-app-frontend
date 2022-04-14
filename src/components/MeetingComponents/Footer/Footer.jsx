@@ -17,7 +17,7 @@ export const Footer = ({
   setShowSidePanel
 }) => {
   const classes = useFooterStyles();
-  console.log(ScreenShareButton);
+
   return (
     <div className={classes.footer}>
       <p>{`03:00 PM - ${meetingCode}`}</p>

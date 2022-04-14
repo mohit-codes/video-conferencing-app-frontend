@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button, InputField, NavBar } from '../../components';
 import { useHomeStyles } from '../Home';
 import { useJoinMeetingStyles } from './JoinMeeting.styles';
@@ -6,7 +7,7 @@ import { useJoinMeetingStyles } from './JoinMeeting.styles';
 export const JoinMeeting = () => {
   const { background, box } = useHomeStyles();
   const { heading } = useJoinMeetingStyles();
-
+  const navigate = useNavigate();
   const [link, setLink] = useState('');
 
   return (
@@ -23,7 +24,9 @@ export const JoinMeeting = () => {
             type='text'
             width='21.125rem'
           />
-          <Button width='21.125rem'>Request to Join</Button>
+          <Button width='21.125rem' clickCallback={() => navigate(`/meet/${link}`)}>
+            Request to Join
+          </Button>
         </div>
       </div>
     </div>
