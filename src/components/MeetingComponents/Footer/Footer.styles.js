@@ -36,9 +36,15 @@ export const useFooterStyles = createUseStyles(() => ({
     width: '2.5rem'
   },
   userOptions: {
-    border: '0.125rem solid black',
-    justifyContent: 'space-evenly',
+    '& > button ': {
+      marginRight: '1rem'
+    },
+    '& > button:nth-of-type(4)': {
+      marginLeft: 'auto'
+    },
+    display: 'flex',
     marginLeft: 'auto',
-    marginRight: 'auto'
+    marginRight: 'auto',
+    width: '20rem'
   }
 }));
