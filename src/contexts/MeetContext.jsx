@@ -20,15 +20,15 @@ export const MeetProvider = ({ children }) => {
   const [videos, setVideos] = useState({});
 
   const updateFromInstance = (key, value) => {
-    const actmap = {
+    const actionMap = {
       addParticipant: (v) => setParticipants((prevState) => [...prevState, v]),
       displayStream: setDisplayStream,
-      message: setMessages,
+      message: (v) => setMessages((prevState) => [...prevState, v]),
       removeParticipant: (v) =>
         setParticipants((prevState) => prevState.filter((peer) => peer.userID !== v)),
       updateVideos: setVideos
     };
-    actmap?.[key]?.(value);
+    actionMap?.[key]?.(value);
   };
 
   const startConnection = () => {
