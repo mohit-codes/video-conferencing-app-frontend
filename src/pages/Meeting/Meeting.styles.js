@@ -3,6 +3,7 @@ import { createUseStyles } from 'react-jss';
 export const useMeetingStyles = createUseStyles((props) => ({
   centerDiv: {
     '&:hover': { opacity: 1 },
+
     alignItems: 'center',
     bottom: 0,
     color: 'white',
@@ -19,6 +20,7 @@ export const useMeetingStyles = createUseStyles((props) => ({
     transition: 'all ease-in 0.2s',
     zIndex: 1
   },
+
   footer: {
     bottom: '0',
     position: 'fixed',
@@ -26,10 +28,12 @@ export const useMeetingStyles = createUseStyles((props) => ({
   },
   minh38: { minHeight: '38vh' },
   posRelative: { position: 'relative' },
+
   video: {
     borderRadius: '20px',
     width: '100%'
   },
+
   videoOff: {
     background: '#646363bd',
     borderRadius: '20px',
