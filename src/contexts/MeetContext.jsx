@@ -10,7 +10,6 @@ export const MeetProvider = ({ children }) => {
   const socketInstance = useRef(null);
   const [isMicOn, setIsMicOn] = useState(true);
   const [isCamOn, setIsCamOn] = useState(true);
-  const [streaming, setStreaming] = useState(false);
   const {
     state: { user }
   } = useAuth();
@@ -18,14 +17,18 @@ export const MeetProvider = ({ children }) => {
   const [displayStream, setDisplayStream] = useState(false);
   const [messages, setMessages] = useState([]);
   const [participants, setParticipants] = useState([]);
+  const [videos, setVideos] = useState({});
 
   const updateFromInstance = (key, value) => {
-    if (key === 'streaming') setStreaming(value);
-    else if (key === 'message') setMessages((prevState) => [...prevState, value]);
-    else if (key === 'addParticipant') setParticipants((prevState) => [...prevState, value]);
-    else if (key === 'removeParticipant')
-      setParticipants((prevState) => prevState.filter((peer) => peer.userID !== value));
-    else if (key === 'displayStream') setDisplayStream(value);
+    const actmap = {
+      addParticipant: (v) => setParticipants((prevState) => [...prevState, v]),
+      displayStream: setDisplayStream,
+      message: setMessages,
+      removeParticipant: (v) =>
+        setParticipants((prevState) => prevState.filter((peer) => peer.userID !== v)),
+      updateVideos: setVideos
+    };
+    actmap?.[key]?.(value);
   };
 
   const startConnection = () => {
@@ -94,7 +97,9 @@ export const MeetProvider = ({ children }) => {
         onMicClick,
         onScreenShareClick,
         participants,
-        sendMessage
+        sendMessage,
+        socketInstance,
+        videos
       }}
     >
       {children}

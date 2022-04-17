@@ -113,6 +113,7 @@
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/interactive-supports-focus": "off",
     "jsx-a11y/no-static-element-interactions": "warn",
+    "jsx-a11y/media-has-caption": "off",
     "jsx-quotes": "off",
     "linebreak-style": ["off", "unix"],
     "max-classes-per-file": ["warn", 5],
@@ -128,6 +129,7 @@
     "max-statements": "off",
     "multiline-comment-style": "off",
     "multiline-ternary": "off",
+    "no-alert": "off",
     "no-console": "off",
     "no-constant-condition": "warn",
     "no-debugger": "warn",
@@ -215,7 +217,7 @@
     "require-await": "off",
     "require-unicode-regexp": "warn",
     "semi": "off",
-    "class-methods-use-this":"off",
+    "class-methods-use-this": "off",
     "sort-imports": [
       "warn",
       {

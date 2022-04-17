@@ -1,8 +1,10 @@
-import { useParams } from 'react-router-dom';
+import clsx from 'clsx';
 import { useEffect, useState } from 'react';
-import { useMeetingStyles } from './Meeting.styles';
-import { Footer, MeetingDetailsSidePanel, MeetingLinkPopUp } from '../../components';
+import { FaRegUserCircle } from 'react-icons/fa';
+import { useParams } from 'react-router-dom';
+import { Col, Footer, MeetingDetailsSidePanel, MeetingLinkPopUp, Row } from '../../components';
 import { useMeet } from '../../contexts';
+import { useMeetingStyles } from './Meeting.styles';
 
 export const Meeting = () => {
   const classes = useMeetingStyles();
@@ -16,18 +18,54 @@ export const Meeting = () => {
     isCamOn,
     onCamClick,
     displayStream,
-    onScreenShareClick
+    onScreenShareClick,
+    videos,
+    socketInstance
   } = useMeet();
 
   useEffect(() => {
     setTimeout(() => {
       setShowMeetingLinkPopUp(false);
-    }, 10000);
+    }, 6000);
   }, []);
-
   return (
     <div className={classes.outerContainer}>
-      <div id='room-container' />
+      <Row>
+        {Object.entries(videos ?? {}).map(([key, value]) => (
+          <Col xs={12} sm={6} lg={4} key={key}>
+            <div className={classes.posRelative}>
+              <div className={classes.minh38}>
+                {value.status?.video && (
+                  <video
+                    ref={(video) => {
+                      /* eslint-disable-next-line */
+                      if (video) video.srcObject = value.stream;
+                    }}
+                    autoPlay
+                    className={classes.video}
+                    muted={socketInstance?.current?.myId === key}
+                  />
+                )}
+              </div>
+              <div className={clsx(classes.centerDiv, !value.status?.video && classes.videoOff)}>
+                {!value.status?.video &&
+                  (value.imageUrl ? (
+                    <img
+                      src={value.imageUrl}
+                      alt='avatar'
+                      loading='lazy'
+                      referrerPolicy='no-referrer'
+                    />
+                  ) : (
+                    <FaRegUserCircle size='6rem' aria-label='default avatar' />
+                  ))}
+                <br />
+                {value?.name}
+              </div>
+            </div>
+          </Col>
+        ))}
+      </Row>
       {showMeetingLinkPopUp && (
         <MeetingLinkPopUp link={`http://localhost:3000/meet/${meetingCode}`} />
       )}
