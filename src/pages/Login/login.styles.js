@@ -47,9 +47,11 @@ export const useLoginStyles = createUseStyles(() => ({
   mb1: {
     marginBottom: '1rem'
   },
+
   orSeparator: {
     margin: '0.5rem 0'
   },
+
   subHeading: {
     fontSize: '1rem',
     fontWeight: 'bold',

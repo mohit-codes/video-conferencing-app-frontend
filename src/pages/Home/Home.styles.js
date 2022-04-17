@@ -10,11 +10,13 @@ export const useHomeStyles = createUseStyles(() => ({
     justifyContent: 'center',
     width: '100%'
   },
+
   box: {
     '&>p': {
       fontSize: '1rem',
       fontWeight: 'bold'
     },
+
     alignItems: 'center',
     backgroundColor: 'white',
     borderRadius: '0.7rem',

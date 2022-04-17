@@ -10,6 +10,7 @@ export const useSidePanelStyles = createUseStyles((props) => ({
     padding: '0.2rem',
     width: '100%'
   },
+
   focusedTab: {
     backgroundColor: 'white',
     border: 'none',
@@ -19,6 +20,7 @@ export const useSidePanelStyles = createUseStyles((props) => ({
     padding: '0.2rem',
     width: '100%'
   },
+
   heading: {
     alignItems: 'center',
     display: 'flex',
@@ -27,10 +29,11 @@ export const useSidePanelStyles = createUseStyles((props) => ({
     justifyContent: 'space-between',
     padding: '0.5rem 1rem'
   },
+
   outer: {
-    background: '#FFFFFF',
+    background: 'white',
     borderRadius: '0.625rem',
-    boxShadow: '0rem 0.25rem 1.0625rem 0.1875rem rgba(0, 0, 0, 0.25)',
+    boxShadow: '0 0.25rem 1.0625rem 0.1875rem rgb(0 0 0 / 25%)',
     height: '41rem',
     padding: '0.5rem 0',
     position: 'absolute',
@@ -38,6 +41,7 @@ export const useSidePanelStyles = createUseStyles((props) => ({
     top: '0.625rem',
     width: '19.25rem'
   },
+
   tabs: {
     display: 'flex',
     marginTop: '0.6rem'

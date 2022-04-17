@@ -13,22 +13,35 @@ export const Footer = ({
   isCamOn,
   onCamClick,
   isScreenShareOn,
-  onScreenShareClick
+  onScreenShareClick,
+  setShowSidePanel
 }) => {
   const classes = useFooterStyles();
-  console.log(ScreenShareButton);
+
   return (
     <div className={classes.footer}>
       <p>{`03:00 PM - ${meetingCode}`}</p>
       <div className={classes.userOptions}>
         <MicButton isOn={isMicOn} onClick={onMicClick} />
         <CamButton isOn={isCamOn} onClick={onCamClick} />
-        <ScreenShareButton isOn={isScreenShareOn} onClick={onScreenShareClick} />
         <EndCallButton onClick={disconnect} />
+        <ScreenShareButton isOn={isScreenShareOn} onClick={onScreenShareClick} />
       </div>
       <div className={classes.popUpTriggers}>
-        <FiUsers role='button' size='24' aria-label='show participants' />
-        <FiMessageSquare role='button' size='24' aria-label='show chat' />
+        <FiUsers
+          style={{ cursor: 'pointer' }}
+          role='button'
+          size='24'
+          aria-label='show participants'
+          onClick={() => setShowSidePanel(true)}
+        />
+        <FiMessageSquare
+          style={{ cursor: 'pointer' }}
+          role='button'
+          size='24'
+          aria-label='show chat'
+          onClick={() => setShowSidePanel(true)}
+        />
       </div>
     </div>
   );

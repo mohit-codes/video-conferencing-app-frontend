@@ -9,7 +9,6 @@ export const setIsAuthLoading = (payload) => ({
 });
 
 /**
- *
  * @param {object} payload
  * @param {string} payload.email
  * @param {string} payload.name

@@ -4,6 +4,7 @@ export const useModalStyles = createUseStyles({
   justifyEnd: {
     justifyContent: 'end'
   },
+
   modalWindow: {
     '& > div': {
       margin: (props) => (props.isOpen ? '10% auto' : '20px auto'),
@@ -12,7 +13,8 @@ export const useModalStyles = createUseStyles({
       transition: '0.25s all ease-in',
       width: '60%'
     },
-    background: 'rgba(0, 0, 0, 0.2)',
+
+    background: 'rgb(0 0 0 / 20%)',
     bottom: 0,
     left: 0,
     opacity: (props) => (props.isOpen ? 1 : 0),
@@ -22,7 +24,6 @@ export const useModalStyles = createUseStyles({
     textAlign: 'center',
     top: 0,
     transition: '0.15s all ease-in',
-
     zIndex: 99999
   }
 });

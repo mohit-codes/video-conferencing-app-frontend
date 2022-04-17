@@ -11,6 +11,7 @@ export const useLoadingStyles = createUseStyles(() => ({
     justifyContent: 'center',
     width: '100vw'
   },
+
   text: {
     fontSize: '1rem',
     fontWeight: '500',

@@ -1,85 +1,75 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import clsx from 'clsx';
+import { useEffect, useState } from 'react';
+import { FaRegUserCircle } from 'react-icons/fa';
+import { useParams } from 'react-router-dom';
+import { Col, Footer, MeetingDetailsSidePanel, MeetingLinkPopUp, Row } from '../../components';
+import { useMeet } from '../../contexts';
 import { useMeetingStyles } from './Meeting.styles';
-import { Footer, MeetingDetailsSidePanel, MeetingLinkPopUp } from '../../components';
-import { useAuth } from '../../contexts/authContext';
-import { createSocketInstance } from '../../utils/socketInstance';
 
 export const Meeting = () => {
   const classes = useMeetingStyles();
   const { meetingCode } = useParams();
-  const navigate = useNavigate();
-  const socketInstance = useRef(null);
-  const [isMicOn, setIsMicOn] = useState(true);
-  const [isCamOn, setIsCamOn] = useState(true);
-  const [streaming, setStreaming] = useState(false);
+  const [showSidePanel, setShowSidePanel] = useState(false);
+  const [showMeetingLinkPopUp, setShowMeetingLinkPopUp] = useState(true);
   const {
-    state: { user }
-  } = useAuth();
-  const [displayStream, setDisplayStream] = useState(false);
-  const [messages, setMessages] = useState([]);
-
-  const updateFromInstance = (key, value) => {
-    if (key === 'streaming') setStreaming(value);
-    else if (key === 'message') setMessages([...value]);
-    else if (key === 'displayStream') setDisplayStream(value);
-  };
-
-  const startConnection = () => {
-    socketInstance.current = createSocketInstance({
-      updateInstance: updateFromInstance,
-      userDetails: user
-    });
-  };
-
-  const onDisconnect = () => {
-    console.log('disconnect');
-    socketInstance.current?.destroyConnection();
-    navigate('/');
-  };
-
-  const onMicClick = () => {
-    const { getMyVideo, reInitializeStream } = socketInstance.current;
-    const myVideo = getMyVideo();
-    if (myVideo)
-      myVideo.srcObject?.getAudioTracks().forEach((track) => {
-        if (track.kind === 'audio')
-          // track.enabled = !isMicOn;
-          isMicOn ? track.stop() : reInitializeStream(isCamOn, !isMicOn);
-      });
-    setIsMicOn(!isMicOn);
-  };
-
-  const onCamClick = () => {
-    if (!displayStream) {
-      const { toggleVideoTrack } = socketInstance.current;
-      toggleVideoTrack({ audio: isMicOn, video: !isCamOn });
-      setIsCamOn(!isCamOn);
-    }
-  };
-
-  const onScreenShareClick = () => {
-    const { reInitializeStream, toggleVideoTrack } = socketInstance.current;
-    displayStream && toggleVideoTrack({ audio: true, video: false });
-    reInitializeStream(false, true, !displayStream ? 'displayMedia' : 'userMedia').then(() => {
-      setDisplayStream(!displayStream);
-      setIsCamOn(false);
-    });
-  };
+    onDisconnect,
+    isMicOn,
+    onMicClick,
+    isCamOn,
+    onCamClick,
+    displayStream,
+    onScreenShareClick,
+    videos,
+    socketInstance
+  } = useMeet();
 
   useEffect(() => {
-    startConnection();
-    return () => {
-      socketInstance.current?.destoryConnection();
-    };
+    setTimeout(() => {
+      setShowMeetingLinkPopUp(false);
+    }, 6000);
   }, []);
-  console.log(Footer);
-
   return (
     <div className={classes.outerContainer}>
-      <div id='room-container' />
-      <MeetingLinkPopUp link={`http://localhost:3000/meet/${meetingCode}`} />
-      <MeetingDetailsSidePanel />
+      <Row>
+        {Object.entries(videos ?? {}).map(([key, value]) => (
+          <Col xs={12} sm={6} lg={4} key={key}>
+            <div className={classes.posRelative}>
+              <div className={classes.minh38}>
+                {value.status?.video && (
+                  <video
+                    ref={(video) => {
+                      /* eslint-disable-next-line */
+                      if (video) video.srcObject = value.stream;
+                    }}
+                    autoPlay
+                    className={classes.video}
+                    muted={socketInstance?.current?.myId === key}
+                  />
+                )}
+              </div>
+              <div className={clsx(classes.centerDiv, !value.status?.video && classes.videoOff)}>
+                {!value.status?.video &&
+                  (value.imageUrl ? (
+                    <img
+                      src={value.imageUrl}
+                      alt='avatar'
+                      loading='lazy'
+                      referrerPolicy='no-referrer'
+                    />
+                  ) : (
+                    <FaRegUserCircle size='6rem' aria-label='default avatar' />
+                  ))}
+                <br />
+                {value?.name}
+              </div>
+            </div>
+          </Col>
+        ))}
+      </Row>
+      {showMeetingLinkPopUp && (
+        <MeetingLinkPopUp link={`http://localhost:3000/meet/${meetingCode}`} />
+      )}
+      {showSidePanel && <MeetingDetailsSidePanel setShowSidePanel={setShowSidePanel} />}
       <div className={classes.footer}>
         <Footer
           meetingCode={meetingCode}
@@ -90,6 +80,7 @@ export const Meeting = () => {
           onCamClick={onCamClick}
           isScreenShareOn={displayStream}
           onScreenShareClick={onScreenShareClick}
+          setShowSidePanel={setShowSidePanel}
         />
       </div>
     </div>

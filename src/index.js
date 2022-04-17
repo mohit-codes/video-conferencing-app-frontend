@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.scss';
 import { BrowserRouter } from 'react-router-dom';
-import { AuthProvider } from './contexts/authContext';
+import { AuthProvider } from './contexts';
 
 ReactDOM.render(
   <React.StrictMode>

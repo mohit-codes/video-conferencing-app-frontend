@@ -27,7 +27,7 @@ export const Home = () => {
       <NavBar />
       <div className={classes.background}>
         <div className={classes.box}>
-          <Button width='21.125rem' disabled={loading} onClick={joinMeet}>
+          <Button width='21.125rem' disabled={loading} clickCallback={() => navigate('/new')}>
             New Meeting
           </Button>
           <p>Or</p>
