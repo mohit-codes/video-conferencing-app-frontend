@@ -39,7 +39,8 @@ export const useSidePanelStyles = createUseStyles((props) => ({
     position: 'absolute',
     right: '1rem',
     top: '0.625rem',
-    width: '19.25rem'
+    width: '19.25rem',
+    zIndex: '999'
   },
 
   tabs: {
