@@ -82,7 +82,7 @@
     "pre-commit": "lint-staged",
     "prepare": "husky install",
     "prettier": "prettier --write .",
-    "start": "per-env",
+    "start": "react-scripts start",
     "start:development": "react-scripts start",
     "start:production": "npx serve -s build",
     "stylelint": "stylelint \"**/*.{css,scss,sass,js,jsx}\" ",

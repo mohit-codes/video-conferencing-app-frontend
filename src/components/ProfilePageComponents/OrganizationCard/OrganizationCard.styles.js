@@ -26,7 +26,6 @@ export const useOrgStyles = createUseStyles((theme) => ({
     flexDirection: 'column',
     overflowY: 'auto'
   },
-
   title: {
     display: 'flex',
     fontSize: '1.125rem',

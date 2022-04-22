@@ -3,7 +3,7 @@ import { lazy, Suspense, useState } from 'react';
 import { jss, ThemeProvider } from 'react-jss';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Loading } from './components';
-import { MeetProvider } from './contexts';
+import { MeetProvider, OrgProvider } from './contexts';
 import { useAuth } from './contexts/authContext';
 import { themes } from './theme';
 
@@ -25,20 +25,32 @@ const NewMeeting = lazy(() => import('./pages/NewMeeting'));
 
 const App = () => {
   const [theme, setTheme] = useState(themes.light);
-  const {
-    state: { token }
-  } = useAuth();
+  const { state } = useAuth();
 
   return (
     <ThemeProvider theme={theme}>
       <Suspense fallback={<Loading />}>
         <Routes>
-          {token ? (
+          {state.token ? (
             <>
               <Route path='/home' element={<Home />} />
               <Route path='/join' element={<JoinMeeting />} />
-              <Route path='/profile' element={<Profile />} />
-              <Route path='/new' element={<NewMeeting />} />
+              <Route
+                path='/profile'
+                element={
+                  <OrgProvider>
+                    <Profile />
+                  </OrgProvider>
+                }
+              />
+              <Route
+                path='/new'
+                element={
+                  <OrgProvider>
+                    <NewMeeting />
+                  </OrgProvider>
+                }
+              />
               <Route
                 path='/meet/:meetingCode'
                 element={

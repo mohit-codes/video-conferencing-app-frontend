@@ -1,23 +1,21 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState } from 'react';
-import { Button, NavBar } from '../../components';
+import { Button, InputField, NavBar } from '../../components';
+import { useOrg } from '../../contexts';
 import { useHomeStyles } from '../Home';
 import { useNewMeetingStyles } from './NewMeeting.styles';
+import { createMeet } from '../../utils/actionHelpers';
+import { getMeetingType } from '../../utils/utility';
 
 export const NewMeeting = () => {
   const { background } = useHomeStyles();
   const classes = useNewMeetingStyles();
   const [meetingType, setMeetingType] = useState(null);
-  const [organization, setOrganization] = useState(null);
-
-  const organizations = [
-    { id: 1, name: 'iot-801' },
-    { id: 12, name: 'iot-802' },
-    { id: 3, name: 'iot-803' },
-    { id: 4, name: 'iot-804' },
-    { id: 5, name: 'iot-805' }
-  ];
+  const [orgId, setOrgId] = useState(null);
+  const [meetingTitle, setMeetingTitle] = useState('');
+  const [errMsg, setErrMsg] = useState(null);
+  const { organizations } = useOrg();
 
   const options = ['Open to All', 'Restricted', 'Organization'];
 
@@ -26,14 +24,48 @@ export const NewMeeting = () => {
   };
 
   const handleOrganizationRadio = (e) => {
-    setOrganization(e.target.id);
+    setOrgId(e.target.id);
   };
-  console.log(meetingType, organization);
+
+  const newMeetingHandler = async () => {
+    if (meetingTitle.trim().length < 1 || !meetingType) {
+      setErrMsg('Empty Fields');
+      return;
+    }
+    if (getMeetingType(meetingType) === 2 && !orgId) {
+      setErrMsg('Select an organization');
+      return;
+    }
+    const type = getMeetingType(meetingType);
+    console.log(type, orgId);
+    const { data, error } = await createMeet({ orgId, title: meetingTitle, type });
+    if (error) {
+      setErrMsg(error.message);
+      return;
+    } else {
+      console.log(data);
+    }
+    setMeetingTitle('');
+    setOrgId(null);
+    setMeetingType(null);
+  };
+
   return (
     <div>
       <NavBar />
       <div className={background}>
         <div className={classes.box}>
+          <div className={classes.titleBox}>
+            <p>Meeting Title</p>
+            <InputField
+              value={meetingTitle}
+              onchange={(e) => setMeetingTitle(e.target.value)}
+              name='title'
+              placeholder=''
+              type='text'
+              width='20rem'
+            />
+          </div>
           <div className={classes.radioInputs} onClick={handleMeetingTypeRadio}>
             {options.map((name) => (
               <div key={name}>
@@ -46,15 +78,18 @@ export const NewMeeting = () => {
             <div className={classes.orgList} onClick={handleOrganizationRadio}>
               <p>Organizations</p>
               {organizations.map((org) => (
-                <div key={org.id} className={classes.org}>
-                  <input type='radio' name='org' id={org.name} />
+                <div key={org._id} className={classes.org}>
+                  <input type='radio' name='org' id={org._id} />
                   <label htmlFor={org.name}>{org.name}</label>
                 </div>
               ))}
             </div>
           )}
+          <p className={classes.errorPara}>{errMsg}</p>
           <div className={classes.btn}>
-            <Button width='21.125rem'>Start Meeting</Button>
+            <Button width='21.125rem' onClick={newMeetingHandler}>
+              Start Meeting
+            </Button>
           </div>
         </div>
       </div>

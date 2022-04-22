@@ -257,7 +257,7 @@ class SocketConnection {
       }
     } else if (id === this.myID) {
       this.socket.emit('video-on', id);
-      this.reInitializeStream(status.video, status.audio, id);
+      this.reInitializeStream(status.video, status.audio);
     } else {
       myVideo.status = { ...myVideo.status, video: true };
     }

@@ -9,6 +9,8 @@ export const useSignupStyles = createUseStyles((theme) => ({
   },
 
   form: {
+    display: 'flex',
+    flexDirection: 'column',
     margin: '0.5rem 1.5rem 1rem'
   },
 

@@ -38,16 +38,15 @@ export const Login = () => {
 
   const isFieldsEmpty = !credentials.email.trim().length || !credentials.password.trim().length;
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     dispatch(setIsAuthLoading(true));
-    loginUser(credentials).then(({ error, payload }) => {
-      if (error) {
-        setErrMsg(error.response?.data?.error || error.response?.data?.message || error.message);
-      } else {
-        dispatch(loginSuccess(payload));
-      }
-    });
+    const { error, payload } = await loginUser(credentials);
+    if (error) {
+      setErrMsg(error.response?.data?.error || error.response?.data?.message || error.message);
+    } else {
+      dispatch(loginSuccess(payload));
+    }
     dispatch(setIsAuthLoading(false));
   };
 
@@ -87,6 +86,13 @@ export const Login = () => {
               />
               <Button width='20rem' margin='1rem 0 0' disabled={isFieldsEmpty || isAuthLoading}>
                 Log In
+              </Button>
+              <Button
+                width='20rem'
+                margin='1rem 0 0'
+                onClick={() => setCredentials({ email: 'test@test.com', password: 'test@123' })}
+              >
+                Use test Credentials
               </Button>
             </form>
             <Row center>Or</Row>

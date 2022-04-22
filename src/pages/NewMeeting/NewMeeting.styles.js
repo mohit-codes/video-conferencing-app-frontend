@@ -41,5 +41,8 @@ export const useNewMeetingStyles = createUseStyles(() => ({
 
     alignItems: 'center',
     display: 'flex'
+  },
+  titleBox: {
+    margin: '0 8rem 1rem 0'
   }
 }));

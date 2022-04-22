@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 import { createUseStyles } from 'react-jss';
 
 export const useOrgStyles = createUseStyles((theme) => ({
@@ -7,7 +8,10 @@ export const useOrgStyles = createUseStyles((theme) => ({
     padding: '0.9rem 0.1rem',
     width: '100%'
   },
-
+  formHead: {
+    fontSize: '1.5rem',
+    fontWeight: '600'
+  },
   mblock10: {
     marginBlock: '10px'
   },
@@ -26,5 +30,15 @@ export const useOrgStyles = createUseStyles((theme) => ({
     display: 'flex',
     height: '18rem',
     justifyContent: 'center'
+  },
+  member: {
+    display: 'flex',
+    fontSize: '.875rem',
+    fontWeight: '500',
+    justifyContent: 'space-between',
+    margin: '.625rem 0'
+  },
+  errorPara: {
+    color: 'red'
   }
 }));

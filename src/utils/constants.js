@@ -5,5 +5,6 @@ export const literals = {
 export const actionTypes = {
   LOGIN: 'LOGIN',
   RESET_AUTH: 'RESET_AUTH',
-  SET_IS_AUTH_LOADING: 'SET_AUTH_LOADING'
+  SET_IS_AUTH_LOADING: 'SET_AUTH_LOADING',
+  UPDATE_PROFILE_IMG: 'UPDATE_PROFILE_IMG'
 };

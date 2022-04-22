@@ -20,7 +20,6 @@ export const NavBar = () => {
     localStorage.clear();
     dispatch(resetAuth());
     navigate('/');
-    window.location.reload();
   };
 
   const firstName = user?.name?.split(' ')[0];

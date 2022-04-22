@@ -1,10 +1,8 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
-import axios from 'axios';
 import { createContext, useContext, useReducer } from 'react';
-import { axiosInstance } from '../utils/axiosInstance';
 import { actionTypes } from '../utils/constants';
 
-const { LOGIN, SET_IS_AUTH_LOADING, RESET_AUTH } = actionTypes;
+const { LOGIN, SET_IS_AUTH_LOADING, RESET_AUTH, UPDATE_PROFILE_IMG } = actionTypes;
 const AuthContext = createContext();
 
 const initState = {
@@ -16,7 +14,6 @@ const initState = {
 const setUser = (state, { token, name, email, imageUrl }) => {
   localStorage.setItem('user', JSON.stringify({ email, imageUrl, name }));
   localStorage.setItem('token', token);
-  axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
   return {
     ...state,
     token,
@@ -25,9 +22,16 @@ const setUser = (state, { token, name, email, imageUrl }) => {
 };
 
 const actionMap = {
-  [LOGIN]: setUser,
-  [RESET_AUTH]: () => initState,
-  [SET_IS_AUTH_LOADING]: (state, payload) => ({ ...state, isAuthLoading: payload })
+  [LOGIN]: (state, payload) => setUser(state, payload),
+  [RESET_AUTH]: () => ({ isAuthLoading: '', token: null, user: null }),
+  [SET_IS_AUTH_LOADING]: (state, payload) => ({ ...state, isAuthLoading: payload }),
+  [UPDATE_PROFILE_IMG]: (state, payload) => {
+    setUser(state, { email: state.email, imageUrl: payload, name: state.name, token: state.token });
+    return {
+      ...state,
+      user: { ...state.user, imageUrl: payload }
+    };
+  }
 };
 
 const authReducer = (state, action) => {
