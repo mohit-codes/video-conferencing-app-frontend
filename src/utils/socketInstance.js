@@ -8,8 +8,9 @@ const peers = {};
 const initializePeerConnection = () =>
   new Peer('', {
     host: config.peerHost,
-    port: 4430,
-    secure: false
+    path: '/peerjs',
+    port: 8080,
+    secure: config.peerSecure
   });
 
 const initializeSocketConnection = () =>
