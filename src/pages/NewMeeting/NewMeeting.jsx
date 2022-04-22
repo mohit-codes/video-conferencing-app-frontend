@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { nanoid } from 'nanoid';
 import { Button, InputField, NavBar } from '../../components';
 import { useOrg } from '../../contexts';
 import { useHomeStyles } from '../Home';
@@ -16,6 +18,7 @@ export const NewMeeting = () => {
   const [meetingTitle, setMeetingTitle] = useState('');
   const [errMsg, setErrMsg] = useState(null);
   const { organizations } = useOrg();
+  const navigate = useNavigate();
 
   const options = ['Open to All', 'Restricted', 'Organization'];
 
@@ -28,26 +31,27 @@ export const NewMeeting = () => {
   };
 
   const newMeetingHandler = async () => {
-    if (meetingTitle.trim().length < 1 || !meetingType) {
-      setErrMsg('Empty Fields');
-      return;
-    }
-    if (getMeetingType(meetingType) === 2 && !orgId) {
-      setErrMsg('Select an organization');
-      return;
-    }
-    const type = getMeetingType(meetingType);
-    console.log(type, orgId);
-    const { data, error } = await createMeet({ orgId, title: meetingTitle, type });
-    if (error) {
-      setErrMsg(error.message);
-      return;
-    } else {
-      console.log(data);
-    }
-    setMeetingTitle('');
-    setOrgId(null);
-    setMeetingType(null);
+    // if (meetingTitle.trim().length < 1 || !meetingType) {
+    //   setErrMsg('Empty Fields');
+    //   return;
+    // }
+    // if (getMeetingType(meetingType) === 2 && !orgId) {
+    //   setErrMsg('Select an organization');
+    //   return;
+    // }
+    // const type = getMeetingType(meetingType);
+    // console.log(type, orgId);
+    navigate(`/meet/${nanoid()}`);
+    // const { data, error } = await createMeet({ orgId, title: meetingTitle, type });
+    // if (error) {
+    //   setErrMsg(error.message);
+    //   return;
+    // } else {
+    //   console.log(data);
+    // }
+    // setMeetingTitle('');
+    // setOrgId(null);
+    // setMeetingType(null);
   };
 
   return (

@@ -18,6 +18,7 @@ export const usePopUpStyles = createUseStyles((props) => ({
     justifyContent: 'space-between',
     letterSpacing: '0.0625rem',
     margin: '0.5rem 0',
+    overflow: 'hidden',
     width: '15.625rem'
   },
 
