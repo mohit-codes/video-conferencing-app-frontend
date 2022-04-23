@@ -26,7 +26,6 @@ const NewMeeting = lazy(() => import('./pages/NewMeeting'));
 const App = () => {
   const [theme, setTheme] = useState(themes.light);
   const { state } = useAuth();
-
   return (
     <ThemeProvider theme={theme}>
       <Suspense fallback={<Loading />}>

@@ -10,6 +10,7 @@ export const MeetProvider = ({ children }) => {
   const socketInstance = useRef(null);
   const [isMicOn, setIsMicOn] = useState(true);
   const [isCamOn, setIsCamOn] = useState(true);
+
   const {
     state: { user }
   } = useAuth();

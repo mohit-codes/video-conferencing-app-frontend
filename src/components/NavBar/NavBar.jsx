@@ -17,7 +17,8 @@ export const NavBar = () => {
   const classes = useNavBarStyles();
 
   const logout = () => {
-    localStorage.clear();
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
     dispatch(resetAuth());
     navigate('/');
   };

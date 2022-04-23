@@ -28,6 +28,7 @@ export const Meeting = () => {
       setShowMeetingLinkPopUp(false);
     }, 6000);
   }, []);
+
   return (
     <div className={classes.outerContainer}>
       <Row>
@@ -55,6 +56,7 @@ export const Meeting = () => {
                       alt='avatar'
                       loading='lazy'
                       referrerPolicy='no-referrer'
+                      className={classes.userAvatar}
                     />
                   ) : (
                     <FaRegUserCircle size='6rem' aria-label='default avatar' />

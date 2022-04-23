@@ -23,7 +23,7 @@ const setUser = (state, { token, name, email, imageUrl }) => {
 
 const actionMap = {
   [LOGIN]: (state, payload) => setUser(state, payload),
-  [RESET_AUTH]: () => ({ isAuthLoading: '', token: null, user: null }),
+  [RESET_AUTH]: () => ({ isAuthLoading: false, token: null, user: null }),
   [SET_IS_AUTH_LOADING]: (state, payload) => ({ ...state, isAuthLoading: payload }),
   [UPDATE_PROFILE_IMG]: (state, payload) => {
     setUser(state, { email: state.email, imageUrl: payload, name: state.name, token: state.token });

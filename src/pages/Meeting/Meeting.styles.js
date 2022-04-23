@@ -28,7 +28,11 @@ export const useMeetingStyles = createUseStyles((props) => ({
   },
   minh38: { minHeight: '38vh' },
   posRelative: { position: 'relative' },
-
+  userAvatar: {
+    borderRadius: '100%',
+    height: '7rem',
+    width: '7rem'
+  },
   video: {
     borderRadius: '20px',
     width: '100%'

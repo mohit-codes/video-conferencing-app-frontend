@@ -20,7 +20,7 @@ export const Footer = ({
 
   return (
     <div className={classes.footer}>
-      <p>{`03:00 PM - ${meetingCode}`}</p>
+      <p>{`Meeting Code - ${meetingCode}`}</p>
       <div className={classes.userOptions}>
         <MicButton isOn={isMicOn} onClick={onMicClick} />
         <CamButton isOn={isCamOn} onClick={onCamClick} />

@@ -20,6 +20,10 @@ export const useNewMeetingStyles = createUseStyles(() => ({
     marginTop: 'auto'
   },
 
+  errorPara: {
+    color: 'red'
+  },
+
   org: {
     alignItems: 'center',
     display: 'flex',
@@ -32,7 +36,6 @@ export const useNewMeetingStyles = createUseStyles(() => ({
     overflowY: 'auto',
     width: '60%'
   },
-
   radioInputs: {
     '&>div>label': {
       marginLeft: '0.3rem',

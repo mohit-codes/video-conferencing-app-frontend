@@ -8,8 +8,9 @@ const peers = {};
 const initializePeerConnection = () =>
   new Peer('', {
     host: config.peerHost,
-    port: 4430,
-    secure: false
+    path: '/peerjs',
+    port: 8080,
+    secure: config.peerSecure
   });
 
 const initializeSocketConnection = () =>
@@ -53,8 +54,10 @@ class SocketConnection {
       const { userDetails } = this.settings;
       this.myID = id;
       const roomID = window.location.pathname.split('/')[2];
+      const { email } = JSON.parse(localStorage.getItem('user'));
       const userData = {
         roomID,
+        userEmail: email,
         userID: id,
         ...userDetails
       };
@@ -91,6 +94,9 @@ class SocketConnection {
     });
     this.socket.on('error', (err) => {
       console.log('socket error --', err);
+    });
+    this.socket.on('meeting-not-found', (msg) => {
+      this.settings.updateInstance('showError', msg);
     });
     this.socket.on('new-broadcast-messsage', (data) => {
       this.messages.push(data);

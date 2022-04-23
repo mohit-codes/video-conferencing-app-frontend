@@ -26,10 +26,10 @@ export const Login = () => {
     onFailure: (res) => {
       console.error('fail res', res);
     },
-    onSuccess: ({ profileObj: { email, name, imageUrl }, accessToken: token }) => {
+    onSuccess: async ({ profileObj: { email, name, imageUrl }, accessToken: token }) => {
       const data = { email, imageUrl, name, token };
-      notifyGoogleLogin(data);
-      dispatch(loginSuccess(data));
+      const response = await notifyGoogleLogin(data);
+      dispatch(loginSuccess(response?.data));
     }
   });
 
@@ -54,9 +54,7 @@ export const Login = () => {
     <div className={clsx(signupClasses.centerDiv, classes.background)}>
       <Container>
         <Row center className={signupClasses.headRow}>
-          <h1 className={classes.heading}>
-            {literals.NAME} {isAuthLoading && 'loading'}
-          </h1>
+          <h1 className={classes.heading}>{literals.NAME}</h1>
         </Row>
         <Row center>
           <Card>
@@ -85,7 +83,7 @@ export const Login = () => {
                 label='Password'
               />
               <Button width='20rem' margin='1rem 0 0' disabled={isFieldsEmpty || isAuthLoading}>
-                Log In
+                {isAuthLoading ? 'logging In...' : 'Log In'}
               </Button>
               <Button
                 width='20rem'

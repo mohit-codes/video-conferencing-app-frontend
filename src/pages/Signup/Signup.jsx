@@ -37,6 +37,7 @@ export const Signup = () => {
       const data = { email, imageUrl, name, token };
       notifyGoogleLogin(data);
       dispatch(loginSuccess(data));
+      window.location.reload();
     },
     prompt: 'select_account'
   });
@@ -62,16 +63,16 @@ export const Signup = () => {
     }));
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     dispatch(setIsAuthLoading(true));
-    signupUser(formValues).then(({ error, payload }) => {
-      if (error) {
-        setErrMsg(error.response?.data?.error || error.response?.data?.message || error.message);
-      } else {
-        dispatch(loginSuccess(payload));
-      }
-    });
+    const { error, payload } = await signupUser(formValues);
+    if (error) {
+      setErrMsg(error.response?.data?.error || error.response?.data?.message || error.message);
+    } else {
+      dispatch(loginSuccess(payload));
+    }
+
     dispatch(setIsAuthLoading(false));
   };
 
@@ -129,7 +130,7 @@ export const Signup = () => {
                   />
                   <Row center>
                     <Button width='20rem' margin='0.5rem 0 0 0' disabled={isDisabled} type='submit'>
-                      Sign up
+                      {isAuthLoading ? 'Signing Up...' : 'Sign up'}
                     </Button>
                   </Row>
                 </Col>

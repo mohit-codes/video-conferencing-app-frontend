@@ -1,3 +1,8 @@
+/* eslint-disable init-declarations */
+/* eslint-disable one-var */
+/* eslint-disable sort-vars */
+import axios from 'axios';
+import { config } from '../config';
 import { axiosRequest } from './axiosInstance';
 
 export const loginUser = async (credentials) => {
@@ -33,60 +38,101 @@ export const signupUser = async ({ name, email, password }) => {
 };
 
 export const notifyGoogleLogin = async (data) => {
-  axiosRequest({ data, method: 'POST', url: '/user/auth/google' });
+  const { response, error } = await axiosRequest({
+    data,
+    method: 'POST',
+    url: '/user/auth/google'
+  });
+  return { data: response?.data, error };
 };
 
 export async function createOrg(body) {
-  const { response, error } = await axiosRequest({
-    data: body,
-    method: 'POST',
-    url: '/org/create'
-  });
+  let response,
+    error = null;
+  try {
+    response = await axios({
+      data: body,
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      method: 'POST',
+      url: `${config.apiBaseUrl}/org/create`
+    });
+  } catch (e) {
+    error = e.message;
+  }
   return { error, organization: response?.data };
 }
 
 export async function deleteOrg(body) {
-  const { response, error } = await axiosRequest({
-    data: body,
-    method: 'DELETE',
-    url: '/org/delete-org'
-  });
+  let response,
+    error = null;
+  try {
+    response = await axios({
+      data: body,
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      method: 'DELETE',
+      url: `${config.apiBaseUrl}/org/delete-org`
+    });
+  } catch (e) {
+    error = e.message;
+  }
   return { data: response?.data, error };
 }
 
 export async function addMember(body) {
-  const { response, error } = await axiosRequest({
-    data: body,
-    method: 'POST',
-    url: '/org/add-member'
-  });
+  let response,
+    error = null;
+  try {
+    response = await axios({
+      data: body,
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      method: 'POST',
+      url: `${config.apiBaseUrl}/org/add-member`
+    });
+  } catch (e) {
+    error = e.message;
+  }
   return { data: response?.data, error };
 }
 
 export async function removeMember(body) {
-  const { response, error } = await axiosRequest({
-    data: body,
-    method: 'PUT',
-    url: '/org/remove-member'
-  });
+  let response,
+    error = null;
+  try {
+    response = await axios({
+      data: body,
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      method: 'PUT',
+      url: `${config.apiBaseUrl}/org/remove-member`
+    });
+  } catch (e) {
+    error = e.message;
+  }
   return { data: response?.data, error };
 }
 
 export async function getUserOrganizations() {
-  const { response, error } = await axiosRequest({
+  const { data } = await axios({
     data: null,
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     method: 'GET',
-    url: '/org/user-org'
+    url: `${config.apiBaseUrl}/org/user-org`
   });
-  return { data: response?.data, error };
+  return { data, error: null };
 }
 
 export async function updateUrl(body) {
-  const { response, error } = await axiosRequest({
-    data: body,
-    method: 'POST',
-    url: '/user/update-url'
-  });
+  let response,
+    error = null;
+  try {
+    response = await axios({
+      data: body,
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      method: 'POST',
+      url: `${config.apiBaseUrl}/user/update-url`
+    });
+  } catch (e) {
+    error = e.message;
+  }
   return { data: response?.data, error };
 }
 
@@ -100,11 +146,18 @@ export async function fetchOrg(body) {
 }
 
 export async function createMeet(body) {
-  const { response, error } = await axiosRequest({
-    data: body,
-    method: 'GET',
-    url: '/meet/create'
-  });
-  console.log(response);
-  return { data: response, error };
+  let response,
+    error = null;
+  try {
+    response = await axios({
+      data: body,
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      method: 'POST',
+      url: `${config.apiBaseUrl}/meet/create`
+    });
+  } catch (e) {
+    error = e.message;
+  }
+  console.log(response, error);
+  return { data: response?.data, error };
 }
